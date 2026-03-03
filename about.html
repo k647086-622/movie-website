@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>關於我們 - CinemaVerse</title>
+
+<!-- ===== 字體引入：思源黑體（與首頁統一） ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- ===== Font Awesome 圖標庫 ===== -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link rel="stylesheet" href="about.css">
+
+</head>
+<body>
+
+<!-- =====================================================
+     頁面主容器（最大寬度 1440px）
+     ===================================================== -->
+<div class="page-wrapper">
+
+
+<!-- =====================================================
+     頁首（Header）— 與首頁完全相同
+     ===================================================== -->
+<header>
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <a class="logo" href="movie-home.html">CINEMA<span>VERSE</span></a>
+
+    <!-- 導覽選單（關於我們頁：active 在「關於我們」） -->
+    <nav id="mainNav">
+      <a href="movie-home.html">電影</a>
+      <a href="animane-home.html">動漫</a>
+      <a href="tv-home.html">電視劇</a>
+      <a href="about.html" class="active">關於我們</a>
+    </nav>
+
+    <!-- 登入 / 註冊 + 漢堡按鈕 -->
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="header-btns">
+        <a href="signInsignUp.html" class="btn-login">登入</a>
+        <a href="signInsignUp.html" class="btn-register">註冊</a>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- =====================================================
+     區塊一：開頭 Hero
+     一張底圖 + 文字置中顯示「關於我們」
+     ===================================================== -->
+<section class="about-hero">
+
+  <!-- 底圖 -->
+  <img class="about-hero-bg" src="https://picsum.photos/id/1080/1920/600" alt="關於我們背景圖">
+
+  <!-- 多層漸層遮罩 -->
+  <div class="about-hero-overlay"></div>
+
+  <!-- 置中文字內容 -->
+  <div class="about-hero-content">
+
+    <!-- 小徽章標籤 -->
+    <div class="about-hero-badge">
+      <i class="fas fa-film"></i>CINEMAVERSE
+    </div>
+
+    <!-- 主標題 -->
+    <h1 class="about-hero-title">關於我們</h1>
+
+    <!-- 紅色裝飾橫線 -->
+    <div class="about-hero-line"></div>
+
+    <!-- 副標文字 -->
+    <p class="about-hero-sub">
+      用熱情打造每一幀畫面，以故事連結每一顆心。<br>
+      我們是一群對電影充滿熱愛的創作者。
+    </p>
+
+  </div>
+
+</section><!-- end 區塊一：開頭 Hero -->
+
+
+<!-- =====================================================
+     區塊二：團隊介紹（Team Section）
+     標題：CINEMAVERSE 團隊 + 副標介紹
+     格局：4欄 × 2列 = 8 位成員卡片
+     ===================================================== -->
+<section class="team-section" id="team">
+
+  <!-- 標題組（置中） -->
+  <div class="team-header">
+    <!-- 小標籤 -->
+    <div class="team-label">OUR TEAM</div>
+    <!-- 主標題：Logo 名稱 + 團隊 -->
+    <h2 class="team-title">
+      <span class="logo-name">CINEMAVERSE</span>&nbsp;團隊
+    </h2>
+    <!-- 副標：團隊介紹 -->
+    <p class="team-subtitle">
+      由一群懷抱電影夢的專業人士所組成，我們橫跨創作、技術、行銷與營運，
+      用不同的專長共同為每一位影迷打造最優質的觀影體驗。
+    </p>
+  </div>
+
+  <!-- 8 位成員卡片網格（4欄 × 2列） -->
+  <div class="team-grid">
+
+    <!-- ── 第一列 ── -->
+
+    <!-- 成員 01：陳志豪 執行長 -->
+    <div class="member-card">
+      <div class="member-img-wrap">
+        <img class="member-img" src="https://picsum.photos/id/1005/400/530" alt="陳志豪">
+      </div>
+      <div class="member-info">
+        <div class="member-name">陳志豪</div>
+        <div class="member-role">執行長 CEO</div>
+        <p class="member-desc">擁有逾 15 年媒體產業資歷，以前瞻視野引領 CinemaVerse 成為華語世界最具影響力的電影平台。</p>
+        <div class="member-social">
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 成員 02：林雅涵 營運長 -->
+    <div class="member-card">
+      <div class="member-img-wrap">
+        <img class="member-img" src="https://picsum.photos/id/1011/400/530" alt="林雅涵">
+      </div>
+      <div class="member-info">
+        <div class="member-name">林雅涵</div>
+        <div class="member-role">營運長 COO</div>
+        <p class="member-desc">專注於優化用戶體驗與平台運營效率，確保每一位影迷都能在最順暢的環境中享受電影。</p>
+        <div class="member-social">
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 成員 03：王大偉 技術總監 -->
+    <div class="member-card">
+      <div class="member-img-wrap">
+        <img class="member-img" src="https://picsum.photos/id/1012/400/530" alt="王大偉">
+      </div>
+      <div class="member-info">
+        <div class="member-name">王大偉</div>
+        <div class="member-role">技術總監 CTO</div>
+        <p class="member-desc">主導平台技術架構與創新研發，帶領工程師團隊打造穩定高效的串流技術與推薦演算法。</p>
+        <div class="member-social">
+          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 成員 04：張美玲 內容總監 -->
+    <div class="member-card">
+      <div class="member-img-wrap">
+        <img class="member-img" src="https://picsum.photos/id/1027/400/530" alt="張美玲">
+      </div>
+      <div class="member-info">
+        <div class="member-name">張美玲</div>
+        <div class="member-role">內容總監 CCO</div>
+        <p class="member-desc">資深電影評論人出身，負責電影內容策展與獨家授權，引進最精選的華語及國際電影。</p>
+        <div class="member-social">
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 第二列 ── -->
+
+    <!-- 成員 05：劉俊傑 設計總監 -->
+    <div class="member-card">
+      <div class="member-img-wrap">
+        <img class="member-img" src="https://picsum.photos/id/1033/400/530" alt="劉俊傑">
+      </div>
+      <div class="member-info">
+        <div class="member-name">劉俊傑</div>
+        <div class="member-role">設計總監 CDO</div>
+        <p class="member-desc">曾任職國際設計公司，以細膩的美學觀將電影的視覺語言融入平台每一個介面細節之中。</p>
+        <div class="member-social">
+          <a href="#" title="Behance"><i class="fab fa-behance"></i></a>
+          <a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 成員 06：許心怡 行銷總監 -->
+    <div class="member-card">
+      <div class="member-img-wrap">
+        <img class="member-img" src="https://picsum.photos/id/1062/400/530" alt="許心怡">
+      </div>
+      <div class="member-info">
+        <div class="member-name">許心怡</div>
+        <div class="member-role">行銷總監 CMO</div>
+        <p class="member-desc">擅長數位整合行銷與品牌故事打造，讓 CinemaVerse 的品牌聲量在全台發光發熱。</p>
+        <div class="member-social">
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 成員 07：吳建廷 資深工程師 -->
+    <div class="member-card">
+      <div class="member-img-wrap">
+        <img class="member-img" src="https://picsum.photos/id/1072/400/530" alt="吳建廷">
+      </div>
+      <div class="member-info">
+        <div class="member-name">吳建廷</div>
+        <div class="member-role">資深工程師</div>
+        <p class="member-desc">全端開發專家，負責平台前後端架構開發與維護，確保數百萬用戶同時使用時的流暢體驗。</p>
+        <div class="member-social">
+          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 成員 08：蔡佳穎 客戶體驗總監 -->
+    <div class="member-card">
+      <div class="member-img-wrap">
+        <img class="member-img" src="https://picsum.photos/id/1041/400/530" alt="蔡佳穎">
+      </div>
+      <div class="member-info">
+        <div class="member-name">蔡佳穎</div>
+        <div class="member-role">客戶體驗總監</div>
+        <p class="member-desc">以同理心為核心，帶領客服與社群團隊傾聽用戶聲音，持續改善平台服務品質與滿意度。</p>
+        <div class="member-social">
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .team-grid -->
+
+</section><!-- end 區塊二：團隊介紹 -->
+
+
+<!-- =====================================================
+     區塊三：公司介紹（Company Introduction）
+     左側公司圖片 + 右側文字介紹（名稱/介紹/數據/核心價值/按鈕）
+     ===================================================== -->
+<section class="company-section" id="company">
+
+  <!-- 左圖 + 右文 版型 -->
+  <div class="company-layout">
+
+    <!-- 左側：公司圖片 -->
+    <div class="company-img-col">
+      <img class="company-img" src="https://picsum.photos/id/1040/800/600" alt="CinemaVerse 公司環境">
+      <!-- 浮動成就標籤（右下角） -->
+      <div class="company-badge">
+        <span class="badge-num">10<span style="font-size:16px;vertical-align:2px;">+</span></span>
+        <span class="badge-text">年影視耕耘</span>
+      </div>
+    </div>
+
+    <!-- 右側：公司文字介紹 -->
+    <div class="company-text-col">
+
+      <!-- 小標籤 -->
+      <div class="company-label">
+        <i class="fas fa-building"></i>ABOUT US
+      </div>
+
+      <!-- 公司主標題 -->
+      <h2 class="company-title">
+        用熱情打造<br>
+        <span class="highlight">專屬於你</span>的電影世界
+      </h2>
+
+      <!-- 公司介紹段落一 -->
+      <p class="company-desc">
+        CinemaVerse 成立於 2014 年，從一個小型電影資料庫出發，歷經十年深耕，
+        如今已成為台灣最大的數位電影串流平台之一，匯集超過 5,000 部華語及國際電影，
+        服務逾百萬名忠實影迷。
+      </p>
+
+      <!-- 公司介紹段落二 -->
+      <p class="company-desc">
+        我們相信，每一部電影都是一段值得被珍視的旅程。無論是震撼人心的動作鉅片、
+        細膩入微的文藝愛情，還是充滿想像力的科幻奇想，CinemaVerse
+        都致力於為您帶來最完整、最高品質的觀影體驗。
+      </p>
+
+      <!-- 公司數據統計（電影數 / 會員數 / 耕耘年份） -->
+      <div class="company-stats">
+        <div class="stat-item">
+          <span class="stat-num">5,000<span>+</span></span>
+          <span class="stat-label">電影片庫</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">100<span>萬</span></span>
+          <span class="stat-label">活躍會員</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">10<span>年</span></span>
+          <span class="stat-label">品牌耕耘</span>
+        </div>
+      </div>
+
+      <!-- 核心價值標籤 -->
+      <div class="company-values">
+        <span class="value-tag"><i class="fas fa-heart"></i>熱情創作</span>
+        <span class="value-tag"><i class="fas fa-shield-alt"></i>品質保證</span>
+        <span class="value-tag"><i class="fas fa-users"></i>以人為本</span>
+        <span class="value-tag"><i class="fas fa-lightbulb"></i>持續創新</span>
+        <span class="value-tag"><i class="fas fa-globe-asia"></i>在地深耕</span>
+      </div>
+
+      <!-- 探索更多按鈕 -->
+      <a href="#" class="btn-more">
+        <i class="fas fa-play"></i>探索更多電影
+      </a>
+
+    </div><!-- end .company-text-col -->
+
+  </div><!-- end .company-layout -->
+
+</section><!-- end 區塊三：公司介紹 -->
+
+<!-- =====================================================
+     服務支援中心區塊（Help / Support Section）
+     四欄：客戶協助 / 帳戶問題 / 關於我們 / 聯絡資訊
+     ===================================================== -->
+<section class="help-section" id="help">
+
+  <!-- 服務支援標題 -->
+  <h2 class="help-section-title">服務支援中心</h2>
+
+  <!-- 四欄連結網格 -->
+  <div class="help-grid">
+
+    <!-- 第一欄：客戶協助 -->
+    <div class="help-col">
+      <h3><i class="fas fa-headset" style="color:var(--accent);"></i>客戶協助</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>常見問題 FAQ</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>線上客服聊天</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>問題回報</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>意見反饋</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>速度測試</a></li>
+      </ul>
+    </div>
+
+    <!-- 第二欄：帳戶問題 -->
+    <div class="help-col">
+      <h3><i class="fas fa-user-circle" style="color:var(--accent);"></i>帳戶問題</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>管理帳戶設定</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>訂閱方案說明</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>付款與帳單</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>密碼重置</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>裝置管理</a></li>
+      </ul>
+    </div>
+
+    <!-- 第三欄：關於我們 -->
+    <div class="help-col">
+      <h3><i class="fas fa-info-circle" style="color:var(--accent);"></i>關於我們</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>公司介紹</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>媒體中心</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>投資人關係</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>工作機會</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>CINEMA VERSE 獨家</a></li>
+      </ul>
+    </div>
+
+    <!-- 第四欄：聯絡資訊 -->
+    <div class="help-col">
+      <h3><i class="fas fa-envelope" style="color:var(--accent);"></i>聯絡資訊</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>聯絡我們</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>隱私權政策</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>使用條款</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>法律聲明</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>Cookie 設定</a></li>
+      </ul>
+    </div>
+
+  </div><!-- end .help-grid -->
+
+</section><!-- end 服務支援中心 -->
+
+<!-- =====================================================
+     頁尾（Footer）— 與首頁一致
+     ===================================================== -->
+<footer>
+  <a class="footer-logo" href="#">CINEMA<span>VERSE</span></a>
+  <p>© 2025 CinemaVerse．版權所有，不得轉載。</p>
+  <div class="footer-links">
+    <a href="#">使用條款</a>
+    <a href="#">隱私權政策</a>
+    <a href="#">Cookie 設定</a>
+    <a href="#">聯絡我們</a>
+  </div>
+</footer>
+
+
+</div><!-- end .page-wrapper -->
+
+
+<!-- =====================================================
+     JavaScript（純功能性）：漢堡選單開關
+     所有視覺特效皆以純 CSS 完成
+     ===================================================== -->
+<script>
+  function toggleNav() {
+    document.getElementById('mainNav').classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CinemaVerse - 電影世界</title>
+
+<!-- ===== 字體引入：思源黑體 ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- ===== Font Awesome 圖標庫 ===== -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- ===== css 選擇器 ===== -->
+<link rel="stylesheet" href="home.css">
+
+</head>
+<body>
+
+<!-- =====================================================
+     頁面主容器（固定最大寬度 1440px，超過依然維持此寬居中）
+     ===================================================== -->
+<div class="page-wrapper">
+
+
+<!-- =====================================================
+     頁首區塊（Header）
+     包含：Logo / 導覽選單 / 登入按鈕 / 註冊按鈕 / 漢堡選單
+     ===================================================== -->
+<header>
+  <div class="header-inner">
+
+    <!-- Logo：純文字替代圖片，紅白雙色設計 -->
+    <a class="logo" href="movie-home.html">CINEMA<span>VERSE</span></a>
+
+    <!-- 導覽選單（桌機：水平顯示 / 手機：漢堡展開後居中） -->
+    <nav id="mainNav">
+      <a href="movie-home.html" class="active">電影</a>
+      <a href="animane-home.html">動漫</a>
+      <a href="tv-home.html">電視劇</a>
+      <a href="about.html">關於我們</a>
+    </nav>
+
+    <!-- 登入/註冊按鈕 + 漢堡選單按鈕（手機版才出現） -->
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="header-btns">
+        <a href="signInsignUp.html" class="btn-login">登入</a>
+        <a href="signInsignUp.html" class="btn-register">註冊</a>
+      </div>
+      <!-- 漢堡選單（≤768px 才顯示） -->
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- =====================================================
+     英雄輪播區塊（Hero Carousel）
+     三張電影圖片自動輪播
+     每張包含：電影標題 / 簡介 / 評分 / 導演 / 時長 / 立即觀看按鈕
+     ===================================================== -->
+<section class="hero">
+
+  <!-- 輪播軌道（三張幻燈片並排） -->
+  <div class="slides" id="slides">
+
+    <!-- 幻燈片 01：星光下的逆時心跳 -->
+    <div class="slide">
+      <img src="https://picsum.photos/id/1043/1920/1080" alt="星光下的逆時心跳">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-badge"><i class="fas fa-fire"></i> 本週熱播</div>
+        <h1 class="slide-title">星光下的逆時心跳<br>Interstellar</h1>
+        <div class="slide-meta">
+          <span class="slide-meta-item rating"><i class="fas fa-star"></i> 9.2</span>
+          <span class="slide-meta-item"><i class="fas fa-clock"></i> 2時49分</span>
+          <span class="slide-meta-item"><i class="fas fa-video"></i> 導演：Christopher Nolan</span>
+        </div>
+        <p class="slide-desc">兩個能短暫回到過去的人，在改變錯誤的同時，也慢慢改寫彼此的命運。</p>
+        <a href="#" class="btn-watch"><i class="fas fa-play"></i> 立即觀看</a>
+      </div>
+    </div>
+
+    <!-- 幻燈片 02：午夜電梯沒有13樓 -->
+    <div class="slide">
+      <img src="https://picsum.photos/id/1018/1920/1080" alt="午夜電梯沒有13樓">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-badge"><i class="fas fa-trophy"></i> 獲獎佳片</div>
+        <h1 class="slide-title">午夜電梯沒有13樓<br>Dune</h1>
+        <div class="slide-meta">
+          <span class="slide-meta-item rating"><i class="fas fa-star"></i> 8.0</span>
+          <span class="slide-meta-item"><i class="fas fa-clock"></i> 2時35分</span>
+          <span class="slide-meta-item"><i class="fas fa-video"></i> 導演：Denis Villeneuve</span>
+        </div>
+        <p class="slide-desc">大樓根本沒有13樓，但按下按鈕的人卻會消失一整晚。</p>
+        <a href="#" class="btn-watch"><i class="fas fa-play"></i> 立即觀看</a>
+      </div>
+    </div>
+
+    <!-- 幻燈片 03：失蹤的記憶編號0 -->
+    <div class="slide">
+      <img src="https://picsum.photos/id/1074/1920/1080" alt="失蹤的記憶編號0">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-badge"><i class="fas fa-award"></i> 奧斯卡得獎</div>
+        <h1 class="slide-title">失蹤的記憶編號0<br>Oppenheimer</h1>
+        <div class="slide-meta">
+          <span class="slide-meta-item rating"><i class="fas fa-star"></i> 8.9</span>
+          <span class="slide-meta-item"><i class="fas fa-clock"></i> 3時00分</span>
+          <span class="slide-meta-item"><i class="fas fa-video"></i> 導演：Christopher Nolan</span>
+        </div>
+        <p class="slide-desc">人類的記憶被編號儲存，而編號0的記憶從未被公開。</p>
+        <a href="#" class="btn-watch"><i class="fas fa-play"></i> 立即觀看</a>
+      </div>
+    </div>
+
+  </div><!-- end .slides -->
+
+  <!-- 輪播底部指示點 -->
+  <div class="carousel-dots">
+    <button class="dot active" onclick="goSlide(0)"></button>
+    <button class="dot" onclick="goSlide(1)"></button>
+    <button class="dot" onclick="goSlide(2)"></button>
+  </div>
+
+</section><!-- end .hero -->
+
+
+<!-- =====================================================
+     最新動漫區塊（Latest Movies）
+     水平滾動，10 張電影卡片
+     hover 效果：圖片以 bottom center 為基準向上放大，不裁切上方
+     ===================================================== -->
+<section class="section" id="latest">
+
+  <!-- 區塊標題列：左側標題 + 右側篩選選單 -->
+  <div class="section-header">
+    <h2 class="section-title">最新動漫</h2>
+    <div class="section-menu">
+      <button onclick="setActive(this)">浪漫</button>
+      <button class="active" onclick="setActive(this)">恐怖</button>
+      <button onclick="setActive(this)">懸疑</button>
+      <button onclick="setActive(this)">喜劇</button>
+    </div>
+  </div>
+
+  <!-- 水平滾動外層容器（overflow-y: visible 讓 hover 放大不被裁切） -->
+  <div class="scroll-track-wrapper">
+    <!-- 卡片軌道 -->
+    <div class="scroll-track">
+
+      <!-- 最新動漫卡片 01 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/237/160/240" alt="午夜電梯沒有13樓">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">午夜電梯沒有13樓</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.4&nbsp;<i class="fas fa-clock"></i>1h52m</div>
+        </div>
+      </div>
+
+      <!-- 最新動漫卡片 02 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/238/160/240" alt="骨瓷娃娃不會哭">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">骨瓷娃娃不會哭</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>7.8&nbsp;<i class="fas fa-clock"></i>2h05m</div>
+        </div>
+      </div>
+
+      <!-- 最新動漫卡片 03 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/239/160/240" alt="紅霧校舍">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">紅霧校舍</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.1&nbsp;<i class="fas fa-clock"></i>1h40m</div>
+        </div>
+      </div>
+
+      <!-- 最新動漫卡片 04 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/240/160/240" alt="鏡中那個不是我">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">鏡中那個不是我</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>9.0&nbsp;<i class="fas fa-clock"></i>2h18m</div>
+        </div>
+      </div>
+
+      <!-- 最新動漫卡片 05 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/241/160/240" alt="停電後請不要說話">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">停電後請不要說話</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>7.5&nbsp;<i class="fas fa-clock"></i>1h58m</div>
+        </div>
+      </div>
+
+      <!-- 最新動漫卡片 06 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/242/160/240" alt="地下室的第四把椅子">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">地下室的第四把椅子</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.6&nbsp;<i class="fas fa-clock"></i>2h30m</div>
+        </div>
+      </div>
+
+      <!-- 最新動漫卡片 07 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/243/160/240" alt="被詛咒的藍色雨傘">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">被詛咒的藍色雨傘</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>7.2&nbsp;<i class="fas fa-clock"></i>1h45m</div>
+        </div>
+      </div>
+
+      <!-- 最新動漫卡片 08 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/244/160/240" alt="凌晨三點的來電">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">凌晨三點的來電</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.8&nbsp;<i class="fas fa-clock"></i>2h10m</div>
+        </div>
+      </div>
+
+      <!-- 最新動漫卡片 09 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/245/160/240" alt="無臉同學">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">無臉同學</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.3&nbsp;<i class="fas fa-clock"></i>2h22m</div>
+        </div>
+      </div>
+
+      <!-- 最新動漫卡片 10 -->
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <img class="latest-card-img" src="https://picsum.photos/id/246/160/240" alt="走廊盡頭的倒影">
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">走廊盡頭的倒影</div>
+          <div class="latest-card-meta"><i class="fas fa-star star"></i>7.9&nbsp;<i class="fas fa-clock"></i>1h55m</div>
+        </div>
+      </div>
+
+    </div><!-- end .scroll-track -->
+  </div><!-- end .scroll-track-wrapper -->
+
+</section><!-- end 最新動漫 -->
+
+
+<!-- =====================================================
+     熱門精選區塊（Hot Picks）
+     6 欄 Grid，12 張動漫卡片
+     圖片固定 2:3 長方形比例（不因切版變形）
+     hover 效果：整個卡片（圖 + 文）一起放大 + 紅色邊框
+     ===================================================== -->
+<section class="section" id="hot">
+
+  <!-- 區塊標題列：左側標題 + 右側篩選選單 -->
+  <div class="section-header">
+    <h2 class="section-title">熱門精選</h2>
+    <div class="section-menu">
+      <button onclick="setActive(this)">浪漫</button>
+      <button onclick="setActive(this)">恐怖</button>
+      <button onclick="setActive(this)">懸疑</button>
+      <button class="active" onclick="setActive(this)">喜劇</button>
+    </div>
+  </div>
+
+  <!-- 熱門精選 6 欄網格 -->
+  <div class="hot-grid">
+
+    <!-- 熱門精選卡片 01 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/247/300/450" alt="轉生成便利商店冰箱">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">轉生成便利商店冰箱</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.6&nbsp;<i class="fas fa-clock"></i>1h50m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 02 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/248/300/450" alt="社恐勇者討伐魔王">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">社恐勇者討伐魔王</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.2&nbsp;<i class="fas fa-clock"></i>2h15m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 03 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/249/300/450" alt="班長其實是外星人">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">班長其實是外星人</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.7&nbsp;<i class="fas fa-clock"></i>2h08m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 04 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/250/300/450" alt="隔壁鄰居每天在拯救世界">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">隔壁鄰居每天在拯救世界</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.4&nbsp;<i class="fas fa-clock"></i>1h48m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 05 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/251/300/450" alt="我家的貓想統治地球">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">我家的貓想統治地球</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.5&nbsp;<i class="fas fa-clock"></i>2h35m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 06 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/252/300/450" alt="戀愛腦禁止入學">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">戀愛腦禁止入學</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>9.1&nbsp;<i class="fas fa-clock"></i>2h42m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 07 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/253/300/450" alt="魔王今天請病假">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">魔王今天請病假</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.8&nbsp;<i class="fas fa-clock"></i>1h55m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 08 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/254/300/450" alt="廢柴天才養成計畫">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">廢柴天才養成計畫</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.0&nbsp;<i class="fas fa-clock"></i>2h20m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 09 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/255/300/450" alt="全班只有我沒有超能力">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">全班只有我沒有超能力</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.3&nbsp;<i class="fas fa-clock"></i>1h40m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 10 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/256/300/450" alt="勇者轉職成客服人員">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">勇者轉職成客服人員</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.9&nbsp;<i class="fas fa-clock"></i>2h28m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 11 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/257/300/450" alt="我的室友是最終Boss">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">我的室友是最終Boss</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.7&nbsp;<i class="fas fa-clock"></i>2h02m</div>
+      </div>
+    </div>
+
+    <!-- 熱門精選卡片 12 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/258/300/450" alt="魔法少女退休生活">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">魔法少女退休生活</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.4&nbsp;<i class="fas fa-clock"></i>1h58m</div>
+      </div>
+    </div>
+
+  </div><!-- end .hot-grid -->
+
+</section><!-- end 熱門精選 -->
+
+<!-- =====================================================
+     更多動漫區塊（More Movies）
+     放置位置：熱門精選區塊（#hot）的下方
+     格式與熱門精選完全相同，圖片從 id/260 開始
+     ===================================================== -->
+
+<section class="section" id="more">
+
+  <!-- 區塊標題列：左側標題 + 右側 More 連結 -->
+  <div class="section-header">
+    <h2 class="section-title">更多動漫</h2>
+    <!-- More 連結：靠右，點擊可導向更多動漫頁面 -->
+    <a href="#" class="more-link">More <i class="fas fa-chevron-right"></i></a>
+  </div>
+
+  <!-- 更多動漫 6 欄網格（與熱門精選共用 .hot-grid / .hot-card 樣式） -->
+  <div class="hot-grid">
+
+    <!-- 更多動漫卡片 01 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/260/300/450" alt="告白在日落之後">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">告白在日落之後</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.9&nbsp;<i class="fas fa-clock"></i>1h52m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 02 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/261/300/450" alt="深夜自習室第九排">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">深夜自習室第九排</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.3&nbsp;<i class="fas fa-clock"></i>2h10m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 03 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/262/300/450" alt="昨日嫌疑人">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">昨日嫌疑人</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.5&nbsp;<i class="fas fa-clock"></i>1h45m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 04 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/263/300/450" alt="魔王的實習第一天">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">魔王的實習第一天</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.6&nbsp;<i class="fas fa-clock"></i>2h25m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 05 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/264/300/450" alt="借來的心跳聲">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">借來的心跳聲</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.2&nbsp;<i class="fas fa-clock"></i>1h58m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 06 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/265/300/450" alt="電梯顯示-1樓">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">電梯顯示-1樓</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>9.0&nbsp;<i class="fas fa-clock"></i>2h38m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 07 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/266/300/450" alt="城市記憶備份檔">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">城市記憶備份檔</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.1&nbsp;<i class="fas fa-clock"></i>1h50m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 08 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/267/300/450" alt="全村最弱勇者">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">全村最弱勇者</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.7&nbsp;<i class="fas fa-clock"></i>2h15m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 09 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/268/300/450" alt="櫻色導航系統">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">櫻色導航系統</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.8&nbsp;<i class="fas fa-clock"></i>2h05m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 10 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/269/300/450" alt="笑聲來自天花板">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">笑聲來自天花板</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.4&nbsp;<i class="fas fa-clock"></i>1h42m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 11 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/270/300/450" alt="第十二個旁觀者">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">第十二個旁觀者</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.5&nbsp;<i class="fas fa-clock"></i>2h30m</div>
+      </div>
+    </div>
+
+    <!-- 更多動漫卡片 12 -->
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="https://picsum.photos/id/271/300/450" alt="打工拯救世界">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">打工拯救世界</div>
+        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.6&nbsp;<i class="fas fa-clock"></i>1h48m</div>
+      </div>
+    </div>
+
+  </div><!-- end .hot-grid -->
+
+</section><!-- end 更多動漫 -->
+
+<!-- =====================================================
+     動漫介紹區塊（Movie Introduction）
+     左側動漫海報圖 + 右側詳細文字介紹（名稱/介紹/評分/時長/導演）
+     ===================================================== -->
+<section class="section" id="intro">
+
+  <!-- 區塊標題列：左側標題 + 右側篩選選單 -->
+  <div class="section-header">
+    <h2 class="section-title">動漫介紹</h2>
+    <div class="section-menu">
+      <button class="active" onclick="setActive(this)">浪漫</button>
+      <button onclick="setActive(this)">恐怖</button>
+      <button onclick="setActive(this)">懸疑</button>
+      <button onclick="setActive(this)">喜劇</button>
+    </div>
+  </div>
+
+  <!-- 動漫介紹主版型（左圖 + 右文） -->
+  <div class="intro-layout">
+
+    <!-- 左側：動漫海報圖 -->
+    <img class="intro-img" src="https://picsum.photos/id/259/400/600" alt="轉生後我還是社畜">
+
+    <!-- 右側：動漫詳細介紹文字 -->
+    <div class="intro-text">
+
+      <!-- 動漫名稱 -->
+      <h2 class="intro-title">轉生後我還是社畜</h2>
+
+      <!-- 動漫基本資訊：評分 / 時長 / 導演 / 年份 -->
+      <div class="intro-meta">
+        <div class="intro-meta-item">
+          <i class="fas fa-star star"></i>
+          <strong style="color:#f5c518;font-size:18px;">8.7</strong>
+          <span>/ 10</span>
+        </div>
+        <div class="intro-meta-item"><i class="fas fa-clock"></i> 2時24分</div>
+        <div class="intro-meta-item"><i class="fas fa-video"></i> 導演：陳偉仁</div>
+        <div class="intro-meta-item"><i class="fas fa-calendar"></i> 2024年</div>
+      </div>
+
+      <!-- 動漫類型標籤 -->
+      <div class="intro-tags">
+        <span class="intro-tag">科幻</span>
+        <span class="intro-tag">懸疑</span>
+        <span class="intro-tag">驚悚</span>
+      </div>
+
+      <!-- 動漫介紹段落一 -->
+      <p class="intro-desc">
+        在近未來的台北，一位神秘的時間調查員接受了一項不可能的任務：追蹤一名能在時間裂縫中穿梭的罪犯。隨著調查深入，他發現整個時間線正面臨崩潰的危機，而真正的敵人，竟然就是他自己未來的影子。
+      </p>
+
+      <!-- 動漫介紹段落二 -->
+      <p class="intro-desc">
+        這部動漫以其精緻的視覺效果、縝密的劇情架構和出色的演技征服了全球影迷。導演陳偉仁以其一貫的細膩風格，將時間旅行的科幻元素與深刻的人性探索完美融合，打造出近年來最令人回味的科幻佳作。
+      </p>
+
+      <!-- 立即觀看按鈕 -->
+      <a href="#" class="btn-watch"><i class="fas fa-play"></i> 立即觀看</a>
+
+    </div><!-- end .intro-text -->
+
+  </div><!-- end .intro-layout -->
+
+</section><!-- end 動漫介紹 -->
+
+
+<!-- =====================================================
+     服務支援中心區塊（Help / Support Section）
+     四欄：客戶協助 / 帳戶問題 / 關於我們 / 聯絡資訊
+     ===================================================== -->
+<section class="help-section" id="help">
+
+  <!-- 服務支援標題 -->
+  <h2 class="help-section-title">服務支援中心</h2>
+
+  <!-- 四欄連結網格 -->
+  <div class="help-grid">
+
+    <!-- 第一欄：客戶協助 -->
+    <div class="help-col">
+      <h3><i class="fas fa-headset" style="color:var(--accent);"></i>客戶協助</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>常見問題 FAQ</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>線上客服聊天</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>問題回報</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>意見反饋</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>速度測試</a></li>
+      </ul>
+    </div>
+
+    <!-- 第二欄：帳戶問題 -->
+    <div class="help-col">
+      <h3><i class="fas fa-user-circle" style="color:var(--accent);"></i>帳戶問題</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>管理帳戶設定</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>訂閱方案說明</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>付款與帳單</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>密碼重置</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>裝置管理</a></li>
+      </ul>
+    </div>
+
+    <!-- 第三欄：關於我們 -->
+    <div class="help-col">
+      <h3><i class="fas fa-info-circle" style="color:var(--accent);"></i>關於我們</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>公司介紹</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>媒體中心</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>投資人關係</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>工作機會</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>CINEMA VERSE 獨家</a></li>
+      </ul>
+    </div>
+
+    <!-- 第四欄：聯絡資訊 -->
+    <div class="help-col">
+      <h3><i class="fas fa-envelope" style="color:var(--accent);"></i>聯絡資訊</h3>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>聯絡我們</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>隱私權政策</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>使用條款</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>法律聲明</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i>Cookie 設定</a></li>
+      </ul>
+    </div>
+
+  </div><!-- end .help-grid -->
+
+</section><!-- end 服務支援中心 -->
+
+
+<!-- =====================================================
+     頁尾區塊（Footer）
+     年份、版權宣告、快速連結
+     ===================================================== -->
+<footer>
+  <!-- 頁尾 Logo -->
+  <a class="footer-logo" href="#">CINEMA<span>VERSE</span></a>
+  <!-- 版權宣告與年份 -->
+  <p>© 2025 CinemaVerse．版權所有，不得轉載。</p>
+  <!-- 頁尾快速連結 -->
+  <div class="footer-links">
+    <a href="#">使用條款</a>
+    <a href="#">隱私權政策</a>
+    <a href="#">Cookie 設定</a>
+    <a href="#">聯絡我們</a>
+  </div>
+</footer>
+
+
+</div><!-- end .page-wrapper -->
+
+
+<!-- =====================================================
+     JavaScript（純功能性）
+     注意：所有 hover 特效全用純 CSS 完成，此段 JS 僅處理：
+     1. 漢堡選單展開/收起
+     2. 篩選按鈕 active 切換
+     3. 輪播指示點互動與自動輪播恢復
+     ===================================================== -->
+<script>
+
+  /* ── 漢堡選單：點擊展開或收起導覽列 ── */
+  function toggleNav() {
+    document.getElementById('mainNav').classList.toggle('open');
+  }
+
+  /* ── 篩選選單按鈕：點擊切換 active 狀態 ── */
+  function setActive(btn) {
+    var parent = btn.closest('.section-menu');
+    parent.querySelectorAll('button').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+  }
+
+  /* ── 輪播指示點：點擊跳至指定幻燈片 ── */
+  var slidesEl  = document.getElementById('slides');
+  var dots      = document.querySelectorAll('.dot');
+  var autoTimer;
+
+  function goSlide(index) {
+    /* 暫停 CSS 自動 animation，改用手動 transition */
+    slidesEl.style.animation  = 'none';
+    slidesEl.style.transition = 'transform 0.7s cubic-bezier(0.4,0,0.2,1)';
+    slidesEl.style.transform  = 'translateX(-' + (index * 33.333) + '%)';
+
+    /* 更新指示點樣式 */
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === index);
+    });
+
+    /* 8 秒後恢復 CSS 自動輪播 */
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(function() {
+      slidesEl.style.transition = '';
+      slidesEl.style.transform  = '';
+      slidesEl.style.animation  = 'slideAuto 18s infinite';
+    }, 8000);
+  }
+
+  /* ── 自動同步指示點與 CSS 輪播進度 ── */
+  setInterval(function() {
+    if (slidesEl.style.animation !== 'none') {
+      var matrix = getComputedStyle(slidesEl).transform;
+      if (matrix && matrix !== 'none') {
+        var vals = matrix.match(/matrix.*\((.+)\)/);
+        if (vals) {
+          var tx  = parseFloat(vals[1].split(', ')[4]);
+          var w   = slidesEl.offsetWidth / 3;
+          var idx = Math.round(Math.abs(tx) / w) % 3;
+          dots.forEach(function(d, i) {
+            d.classList.toggle('active', i === idx);
+          });
+        }
+      }
+    }
+  }, 500);
+
+</script>
+
+</body>
+</html>

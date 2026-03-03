@@ -1,0 +1,935 @@
+/* =====================================================
+   全域 CSS 變數 / 重置樣式
+   ===================================================== */
+:root {
+  --bg-dark:        #1a1410;   /* 主背景：帶棕調深黑 */
+  --bg-card:        #231e18;   /* 卡片背景 */
+  --bg-section:     #1e1912;   /* 區塊交替背景 */
+  --accent:         #e50914;   /* 品牌紅色 */
+  --accent-hover:   #ff1a27;   /* 紅色 hover 態 */
+  --gold:           #f5c518;   /* 評分金色 */
+  --text-primary:   #ffffff;   /* 主要文字（白） */
+  --text-secondary: #b0a898;   /* 次要文字（灰） */
+  --text-muted:     #6e6358;   /* 淡化文字 */
+  --border:         #2e2820;   /* 邊框色 */
+  --padding-x:      30px;      /* 左右邊界距離 */
+  --max-width:      1440px;    /* 網頁最大寬度，固定在 1440px */
+}
+
+/* 通用重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 全域字體、背景設定 */
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background-color: #0d0b09; /* 超出 1440px 時兩側顯示更深背景 */
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   頁面最大寬度包裝容器
+   固定 1440px，超過 1440px 同樣維持 1440px 置中顯示
+   ===================================================== */
+.page-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background-color: var(--bg-dark);
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+/* =====================================================
+   頁首（Header）
+   Logo + 導覽選單 + 登入/註冊按鈕
+   固定在頂部，不隨滾動消失
+   ===================================================== */
+header {
+  position: fixed;
+  top: 0;
+  /* 讓 header 也限制在 1440px 內居中 */
+  /* left: 50%;
+  transform: translateX(-50%); */
+  width: 100%;
+  max-width: var(--max-width);
+  z-index: 1000;
+  background: linear-gradient(
+    to bottom,
+    rgba(26,20,16,0.98) 0%,
+    rgba(26,20,16,0.88) 100%
+  );
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Header 內容列 */
+.header-inner {
+  padding: 0 var(--padding-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  gap: 16px;
+}
+
+/* ── Logo 文字標誌 ──
+   不因切版改變大小（flex-shrink: 0） */
+.logo {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;    /* 不因空間不足而縮小 */
+  text-shadow: 0 0 20px rgba(229,9,20,0.5);
+  text-decoration: none;
+}
+.logo span {
+  color: var(--text-primary);
+}
+
+/* ── 導覽列（電影 / 動漫 / 電視劇 / 關於我們）── */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+nav a:hover {
+  color: var(--text-primary);
+  background: rgba(229,9,20,0.15);
+}
+nav a.active {
+  color: var(--accent);
+}
+
+/* ── 登入 / 註冊按鈕群組 ──
+   不因切版改變大小（flex-shrink: 0） */
+.header-btns {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;  /* 不縮小 */
+}
+
+/* 登入按鈕：鏤空邊框樣式 */
+.btn-login {
+  padding: 7px 18px;
+  border: 1px solid var(--text-secondary);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.btn-login:hover {
+  border-color: var(--text-primary);
+  background: rgba(255,255,255,0.08);
+}
+
+/* 註冊按鈕：實心紅色樣式 */
+.btn-register {
+  padding: 7px 18px;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--text-primary);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.btn-register:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(229,9,20,0.4);
+}
+
+/* ── 漢堡選單按鈕（平板 / 手機版才顯示） ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  flex-shrink: 0;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: all 0.3s;
+}
+
+
+/* =====================================================
+   英雄輪播區（Hero Carousel）
+   全螢幕高度，三張圖片自動輪播
+   ===================================================== */
+.hero {
+  margin-top: 70px; /* 避免被 fixed header 遮住 */
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 70px);
+  min-height: 500px;
+  overflow: hidden;
+}
+
+/* 輪播軌道：三張幻燈片並排，CSS animation 自動播放 */
+.slides {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  animation: slideAuto 18s infinite;
+}
+
+/* 輪播自動播放動畫
+   每張停留約 5 秒，切換過渡 1 秒 */
+@keyframes slideAuto {
+  0%,   27%  { transform: translateX(0); }
+  33%,  60%  { transform: translateX(-33.333%); }
+  66%,  93%  { transform: translateX(-66.666%); }
+  100%        { transform: translateX(0); }
+}
+
+/* 單張幻燈片 */
+.slide {
+  width: 33.333%;
+  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* 幻燈片背景圖 */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+}
+
+/* 幻燈片左側漸層遮罩（讓文字更清晰） */
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(26,20,16,0.95) 0%,
+    rgba(26,20,16,0.5) 55%,
+    transparent 100%
+  );
+}
+
+/* 幻燈片文字內容 */
+.slide-content {
+  position: absolute;
+  left: var(--padding-x);
+  bottom: 15%;
+  max-width: 560px;
+}
+
+/* 電影熱播/獲獎標籤徽章 */
+.slide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+/* 電影標題 */
+.slide-title {
+  font-size: clamp(26px, 4vw, 56px);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+}
+
+/* 電影資訊列（評分 / 時長 / 導演） */
+.slide-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.slide-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.slide-meta-item i { color: var(--gold); font-size: 12px; }
+
+/* 評分數字樣式 */
+.rating {
+  color: var(--gold) !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+/* 電影簡介文字（限制三行） */
+.slide-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 立即觀看按鈕（輪播區與電影介紹區共用） */
+.btn-watch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 13px 30px;
+  border-radius: 8px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.btn-watch:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(229,9,20,0.5);
+}
+
+/* 輪播底部指示點 */
+.carousel-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all 0.4s;
+  border: none;
+  padding: 0;
+}
+.dot.active {
+  background: var(--accent);
+  width: 24px;
+  border-radius: 4px;
+}
+
+
+/* =====================================================
+   通用區塊樣式（各內容區塊共用）
+   ===================================================== */
+.section {
+  padding: 56px var(--padding-x);
+  background: var(--bg-dark);
+}
+/* 偶數區塊略深背景，製造視覺層次 */
+.section:nth-child(even) {
+  background: var(--bg-section);
+}
+
+/* 區塊標題列：標題靠左、篩選選單靠右 */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* 區塊左側標題（含紅色豎線裝飾） */
+.section-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 22px;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* 區塊右側篩選選單（浪漫 / 恐怖 / 懸疑 / 喜劇） */
+.section-menu {
+  display: flex;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+.section-menu button {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.section-menu button:hover,
+.section-menu button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+
+/* =====================================================
+   最新電影區塊（Latest Movies）
+   水平滾動卡片，hover 時圖片向上放大不裁切上方
+   ===================================================== */
+
+/* 滾動外層容器
+   關鍵：overflow-x: auto（允許橫向滾動）
+         overflow-y: visible（允許 hover 向上放大，不被裁切）
+   並用 padding/margin 補償以免邊緣也被裁切 */
+.scroll-track-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  /* 上方留足夠空間讓 hover 時卡片向上放大不被裁切 */
+  padding-top: 14px;
+  margin-top: -14px;
+  padding-left: 6px;
+  margin-left: -6px;
+  padding-right: 6px;
+  margin-right: -6px;
+  /* 自訂捲軸樣式 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--border);
+}
+.scroll-track-wrapper::-webkit-scrollbar { height: 4px; }
+.scroll-track-wrapper::-webkit-scrollbar-track { background: var(--border); border-radius: 2px; }
+.scroll-track-wrapper::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* 卡片橫向軌道（不換行橫排） */
+.scroll-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding-bottom: 10px;
+  padding-top: 6px;
+}
+
+/* 最新電影單張卡片 */
+.latest-card {
+  flex-shrink: 0;
+  width: 160px;
+  cursor: pointer;
+}
+
+/* 最新電影圖片容器
+   overflow: hidden 讓圖片縮放不超出圓角框
+   transform-origin: bottom center 確保放大方向朝上 */
+.latest-card-img-wrap {
+  width: 160px;
+  height: 240px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transform-origin: bottom center; /* 向上放大，不壓到下方文字也不往上裁切 */
+}
+
+/* hover 時圖片容器整體向上縮放放大 */
+.latest-card:hover .latest-card-img-wrap {
+  transform: scale(1.08);
+  box-shadow: 0 -4px 28px rgba(229,9,20,0.3);
+}
+
+/* 最新電影圖片本體 */
+.latest-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.latest-card:hover .latest-card-img {
+  transform: scale(1.04);
+}
+
+/* 卡片文字資訊（電影名稱、評分、時長） */
+.latest-card-info {
+  padding: 10px 2px 0;
+}
+.latest-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+}
+.latest-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.latest-card-meta .star { color: var(--gold); }
+
+
+/* =====================================================
+   熱門精選區塊（Hot Picks）
+   6欄網格，圖文整體卡片 hover 時放大 + 紅色邊框高亮
+   圖片保持固定長方形比例（2:3），不因版面改變形狀
+   ===================================================== */
+
+/* 熱門精選網格容器 */
+.hot-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+/* 熱門精選單張卡片
+   整體作為一個 hover 互動單位（圖片＋文字一起變化） */
+.hot-card {
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;           /* 確保圓角生效且內容不超出 */
+  background: var(--bg-card);
+  border: 1px solid transparent;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  /* transform-origin 預設 center，卡片等比例從中心放大 */
+}
+
+/* hover：整張卡片（圖片 + 文字）一起放大，顯示紅色邊框 */
+.hot-card:hover {
+  transform: scale(1.04);
+  border-color: rgba(229,9,20,0.7);
+  box-shadow: 0 8px 30px rgba(229,9,20,0.25);
+  position: relative;
+  z-index: 2; /* 確保放大後浮在相鄰卡片上方 */
+}
+
+/* 熱門精選圖片容器
+   aspect-ratio: 2/3 保持直式長方形比例（不隨版面寬度變形）
+   不會因為切版 Grid 寬度改變而使圖片變成正方形或橫向 */
+.hot-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 2 / 3; /* 固定 2:3 直式長方形，任何寬度下比例不變 */
+  overflow: hidden;
+}
+
+/* 熱門精選圖片本體 */
+.hot-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+/* hover 時圖片輕微放大（視覺深度感） */
+.hot-card:hover .hot-card-img {
+  transform: scale(1.06);
+}
+
+/* 熱門精選卡片文字區 */
+.hot-card-info {
+  padding: 10px 10px 12px;
+}
+.hot-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+}
+.hot-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.hot-card-meta .star { color: var(--gold); }
+
+/* =====================================================
+   更多電影區塊專屬樣式
+   （.hot-grid / .hot-card 等共用樣式已在原檔定義，無需重複）
+   ===================================================== */
+
+/* More 連結：靠右對齊，與左側標題同行 */
+.more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);   /* 預設灰色 */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Noto Sans TC', sans-serif;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: color 0.3s, border-color 0.3s, 0.3s;
+  white-space: nowrap;
+}
+
+/* More 連結 hover 效果：變紅與背景淡紅 */
+.more-link:hover {
+  color: #fff;
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+/* More 連結內的箭頭 icon 字體大小調整 */
+.more-link i {
+  font-size: 11px;
+}
+
+/* =====================================================
+   電影介紹區塊（Movie Introduction）
+   左側電影海報 + 右側詳細文字介紹
+   ===================================================== */
+
+/* 電影介紹主版型：左圖右文兩欄 */
+.intro-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* 左側電影海報圖 */
+.intro-img {
+  width: 100%;
+  aspect-ratio: 2 / 3; /* 同樣維持 2:3 直式比例 */
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  display: block;
+}
+
+/* 右側電影標題 */
+.intro-title {
+  font-size: 30px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+/* 電影資訊列（評分 / 時長 / 導演 / 年份） */
+.intro-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+.intro-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.intro-meta-item i { color: var(--accent); }
+.intro-meta-item .star { color: var(--gold); }
+
+/* 電影類型標籤 */
+.intro-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.intro-tag {
+  padding: 4px 12px;
+  background: rgba(229,9,20,0.15);
+  border: 1px solid rgba(229,9,20,0.3);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* 電影介紹正文 */
+.intro-desc {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   服務支援中心區塊（Help / Support Section）
+   四欄：客戶協助 / 帳戶問題 / 關於我們 / 聯絡資訊
+   ===================================================== */
+.help-section {
+  padding: 60px var(--padding-x);
+  background: #161210;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* 服務支援標題（含紅色豎線裝飾） */
+.help-section-title {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.help-section-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 22px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* 四欄網格 */
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+/* 各欄標題 */
+.help-col h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 各欄連結列表 */
+.help-col ul { list-style: none; }
+.help-col ul li { margin-bottom: 10px; }
+.help-col ul li a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.help-col ul li a:hover { color: var(--text-primary); }
+.help-col ul li a i {
+  font-size: 10px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+
+/* =====================================================
+   頁尾（Footer）
+   版權宣告 + 年份 + 快速連結
+   ===================================================== */
+footer {
+  padding: 22px var(--padding-x);
+  background: #100e0c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+}
+
+/* 頁尾 Logo */
+.footer-logo {
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+.footer-logo span { color: var(--text-primary); }
+
+/* 版權文字 */
+footer p { font-size: 12px; color: var(--text-muted); }
+
+/* 頁尾快速連結 */
+.footer-links { display: flex; gap: 16px; }
+.footer-links a {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--text-primary); }
+
+
+/* =====================================================
+   RWD 響應式切版規則
+   桌機：1440px / 平板：768px / 手機：360px
+   ===================================================== */
+
+/* ── 中型平板（1024px 以下）── */
+@media (max-width: 1024px) {
+  /* 熱門精選：6 欄 → 4 欄 */
+  .hot-grid { grid-template-columns: repeat(4, 1fr); }
+  /* 電影介紹左欄縮小 */
+  .intro-layout { grid-template-columns: 240px 1fr; gap: 24px; }
+  /* 服務支援：4 欄 → 2 欄 */
+  .help-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── 平板版（768px 以下）── */
+@media (max-width: 768px) {
+  :root { --padding-x: 20px; }
+
+  /* 導覽選單：收起，點漢堡展開，選項居中 */
+  nav {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: var(--max-width);
+    flex-direction: column;
+    align-items: center;   /* 選單展開後文字居中 */
+    background: rgba(26,20,16,0.98);
+    padding: 16px var(--padding-x);
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+    gap: 4px;
+  }
+  nav.open { display: flex; }
+  nav a {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: center;   /* 選單文字置中 */
+    justify-content: center;
+  }
+
+  /* 漢堡按鈕顯示 */
+  .hamburger { display: flex; }
+
+  /* 英雄輪播高度調整 */
+  .hero { height: 72vw; min-height: 360px; }
+  .slide-content { max-width: 88%; }
+
+  /* 熱門精選：4 欄 → 3 欄 */
+  .hot-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* 電影介紹：左右兩欄 → 上下單欄 */
+  .intro-layout { grid-template-columns: 1fr; }
+  .intro-img { max-width: 260px; margin: 0 auto; }
+
+  /* 頁尾垂直排列 */
+  footer { flex-direction: column; align-items: center; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+
+/* ── 手機版（480px 以下）── */
+@media (max-width: 480px) {
+  :root { --padding-x: 16px; }
+  .section { padding: 40px var(--padding-x); }
+
+  /* 最新電影卡片略縮小 */
+  .latest-card { width: 138px; }
+  .latest-card-img-wrap { width: 138px; height: 207px; }
+
+  /* 熱門精選：3 欄 → 2 欄 */
+  .hot-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* 服務支援：2 欄 */
+  .help-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+  .slide-title { font-size: 22px; }
+  .intro-title { font-size: 22px; }
+  .footer-links { display: none; }
+}
+
+/* ── 最小手機版（360px 以下）──
+   Logo 和按鈕同步縮小以容納空間
+   導覽選單透過漢堡展開，文字居中顯示 */
+@media (max-width: 360px) {
+  :root { --padding-x: 12px; }
+
+  /* Logo 縮小字體 */
+  .logo { font-size: 16px; letter-spacing: 1px; }
+
+  /* 登入/註冊按鈕縮小 */
+  .btn-login, .btn-register { font-size: 12px; padding: 6px 12px; }
+
+  /* 熱門精選 → 2 欄 */
+  .hot-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* 服務支援 → 單欄 */
+  .help-grid { grid-template-columns: 1fr; }
+
+  .slide-title { font-size: 18px; }
+}

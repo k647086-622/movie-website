@@ -1,0 +1,471 @@
+/* =====================================================
+   全域變數（與首頁色調一致）
+   ===================================================== */
+:root {
+  --bg-dark:        #1a1410;
+  --bg-card:        #1c1613;
+  --accent:         #e50914;
+  --accent-hover:   #ff1a27;
+  --text-primary:   #ffffff;
+  --text-secondary: #b0a898;
+  --text-muted:     #6e6358;
+  --border:         rgba(255,255,255,0.08);
+  --input-bg:       rgba(255,255,255,0.06);
+  --input-border:   rgba(255,255,255,0.12);
+  --input-focus:    rgba(229,9,20,0.5);
+}
+
+/* =====================================================
+   通用重置
+   ===================================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  /* 整體背景：深棕紅色由左上至右下漸層 */
+  background: linear-gradient(
+    135deg,
+    #2a0d0d 0%,
+    #1e0a0a 20%,
+    #3d1a10 45%,
+    #2b1208 70%,
+    #1a0c06 100%
+  );
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 背景紋理：細微噪點感 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(229,9,20,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(180,60,20,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =====================================================
+   主卡片容器
+   仿照參考圖：左右各半，整體圓角卡片
+   ===================================================== */
+.auth-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 960px;
+  min-height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* =====================================================
+   左側：圖片區塊
+   ===================================================== */
+.auth-image-col {
+  position: relative;
+  overflow: hidden;
+  min-height: 560px;
+}
+
+/* 左側底圖 */
+.auth-image-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.65);
+  display: block;
+}
+
+/* 左側頂部：返回網站連結 */
+.auth-back {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+.auth-back:hover {
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+}
+
+/* 左側 Logo */
+.auth-logo {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  z-index: 10;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 0 0 20px rgba(229,9,20,0.6);
+}
+.auth-logo span { color: var(--accent); }
+
+/* 左側底部文字 */
+.auth-image-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 60px 28px 32px;
+  background: linear-gradient(to top, rgba(26,14,6,0.9) 0%, transparent 100%);
+  z-index: 5;
+}
+.auth-image-text h2 {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.auth-image-text p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+
+/* 左側底部指示點 */
+.auth-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+}
+.auth-dot {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.35);
+}
+.auth-dot.active {
+  background: #fff;
+  width: 24px;
+}
+.auth-dot:not(.active) { width: 14px; }
+
+
+/* =====================================================
+   右側：登入 / 註冊表單區塊
+   深黑帶透明感底色
+   ===================================================== */
+.auth-form-col {
+  background: rgba(18, 12, 8, 0.96);
+  backdrop-filter: blur(20px);
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* 右側頂部分頁 Tab（登入 / 註冊） */
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.auth-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.3s;
+  user-select: none;
+}
+.auth-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+.auth-tab:hover:not(.active) {
+  color: var(--text-secondary);
+}
+
+/* 標題 */
+.auth-form-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* 副標 */
+.auth-form-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.auth-form-sub a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.auth-form-sub a:hover { text-decoration: underline; }
+
+/* 表單面板（登入 / 註冊切換顯示） */
+.form-panel { display: none; }
+.form-panel.active { display: block; }
+
+/* 輸入欄位組（兩欄並排用） */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* 單一輸入欄位組 */
+.form-group {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+/* 輸入框 label */
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* 輸入框本體 */
+.form-group input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.form-group input::placeholder {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.form-group input:focus {
+  border-color: rgba(229,9,20,0.5);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(229,9,20,0.1);
+}
+
+/* 密碼欄位右側眼睛 icon */
+.input-icon-wrap {
+  position: relative;
+}
+.input-icon-wrap input {
+  padding-right: 40px;
+}
+.input-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+.input-eye:hover { color: var(--text-secondary); }
+
+/* 條款同意 checkbox 行 */
+.form-agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.form-agree input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  margin-top: 1px;
+}
+.form-agree label {
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1.5;
+}
+.form-agree label a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.form-agree label a:hover { text-decoration: underline; }
+
+/* 忘記密碼連結（登入頁專用） */
+.form-forgot {
+  text-align: right;
+  margin-top: -6px;
+  margin-bottom: 18px;
+}
+.form-forgot a {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.form-forgot a:hover { color: var(--accent); }
+
+/* 主要按鈕（登入 / 建立帳號） */
+.btn-primary {
+  width: 100%;
+  padding: 13px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+  margin-bottom: 18px;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(229,9,20,0.4);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* 分隔線「Or register with」 */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.auth-divider span {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* 社群登入按鈕群組 */
+.social-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* 社群按鈕通用樣式 */
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-social:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+
+/* Google 按鈕 icon */
+.btn-google .google-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Facebook 按鈕 icon */
+.btn-facebook i {
+  color: #1877f2;
+  font-size: 16px;
+}
+
+
+/* =====================================================
+   RWD 響應式
+   ===================================================== */
+
+/* 平板（768px 以下） */
+@media (max-width: 768px) {
+  body { padding: 16px; align-items: flex-start; padding-top: 24px; }
+
+  /* 卡片改為單欄，圖片在上表單在下 */
+  .auth-card {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .auth-image-col { min-height: 200px; }
+
+  .auth-form-col { padding: 28px 24px; }
+
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .form-row .form-group { margin-bottom: 12px; }
+}
+
+/* 手機（480px 以下） */
+@media (max-width: 480px) {
+  body { padding: 12px; }
+  .auth-form-col { padding: 24px 18px; }
+  .auth-form-title { font-size: 20px; }
+  .social-btns { grid-template-columns: 1fr; }
+}
