@@ -280,156 +280,19 @@
      hover 效果：整個卡片（圖 + 文）一起放大 + 紅色邊框
      ===================================================== -->
 <section class="section" id="hot">
-
   <!-- 區塊標題列：左側標題 + 右側篩選選單 -->
   <div class="section-header">
     <h2 class="section-title">熱門精選</h2>
     <div class="section-menu">
-      <button class="active" onclick="setActive(this)">浪漫</button>
-      <button onclick="setActive(this)">恐怖</button>
-      <button onclick="setActive(this)">懸疑</button>
-      <button onclick="setActive(this)">喜劇</button>
+      <button class="filter-btn active" onclick="switchHotCategory('浪漫', this)">浪漫</button>
+      <button class="filter-btn" onclick="switchHotCategory('恐怖', this)">恐怖</button>
+      <button class="filter-btn" onclick="switchHotCategory('懸疑', this)">懸疑</button>
+      <button class="filter-btn" onclick="switchHotCategory('喜劇', this)">喜劇</button>
     </div>
   </div>
-
-  <!-- 熱門精選 6 欄網格 -->
-  <div class="hot-grid">
-
-    <!-- 熱門精選卡片 01 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/247/300/450" alt="那年我們沒有說再見">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">那年我們沒有說再見</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.6&nbsp;<i class="fas fa-clock"></i>1h50m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 02 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/248/300/450" alt="城市盡頭的咖啡館">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">城市盡頭的咖啡館</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.2&nbsp;<i class="fas fa-clock"></i>2h15m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 03 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/249/300/450" alt="晚風替我保密">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">晚風替我保密</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.7&nbsp;<i class="fas fa-clock"></i>2h08m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 04 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/250/300/450" alt="重來一次的約定">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">重來一次的約定</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.4&nbsp;<i class="fas fa-clock"></i>1h48m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 05 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/251/300/450" alt="你遲到的那五年">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">你遲到的那五年</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.5&nbsp;<i class="fas fa-clock"></i>2h35m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 06 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/252/300/450" alt="日落之前愛上你">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">日落之前愛上你</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>9.1&nbsp;<i class="fas fa-clock"></i>2h42m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 07 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/253/300/450" alt="隔著雨的距離">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">隔著雨的距離</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.8&nbsp;<i class="fas fa-clock"></i>1h55m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 08 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/254/300/450" alt="左邊心房出租中">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">左邊心房出租中</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.0&nbsp;<i class="fas fa-clock"></i>2h20m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 09 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/255/300/450" alt="你的名字在我通訊錄裡">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">你的名字在我通訊錄裡</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.3&nbsp;<i class="fas fa-clock"></i>1h40m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 10 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/256/300/450" alt="月光下的第二次心動">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">月光下的第二次心動</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.9&nbsp;<i class="fas fa-clock"></i>2h28m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 11 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/257/300/450" alt="如果時間願意等我們">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">如果時間願意等我們</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.7&nbsp;<i class="fas fa-clock"></i>2h02m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 12 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/258/300/450" alt="未寄出的情書">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">未寄出的情書</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.4&nbsp;<i class="fas fa-clock"></i>1h58m</div>
-      </div>
-    </div>
-
-  </div><!-- end .hot-grid -->
-
+  <div id="hot-grid" class="hot-grid"></div>
 </section><!-- end 熱門精選 -->
+
 
 <!-- =====================================================
      更多電視劇區塊（More Movies）
@@ -806,6 +669,123 @@
     }
   }, 500);
 
+/*── 四個分類的電影資料 ── */
+    let hotMovies = {
+      /* ── 浪漫分類 ── */
+      '浪漫': [
+        {img: "lovePic/lovePic1.png", title: "那年我們沒有說再見", rating: "7.6", duration: "2h08m"},
+        {img: "lovePic/lovePic2.png", title: "城市盡頭的咖啡館", rating: "8.3", duration: "1h37m"},
+        {img: "lovePic/lovePic3.png", title: "晚風替我保密", rating: "9.1", duration: "1h19m"},
+        {img: "lovePic/lovePic4.png", title: "重來一次的約定", rating: "6.5", duration: "1h31m"},
+        {img: "lovePic/lovePic5.png", title: "你遲到的那五年", rating: "5.2", duration: "1h24m"},
+        {img: "lovePic/lovePic6.png", title: "日落之前愛上你", rating: "6.4", duration: "2h22m"},
+        {img: "lovePic/lovePic7.png", title: "隔著雨的距離", rating: "8.2", duration: "1h23m"},
+        {img: "lovePic/lovePic8.png", title: "左邊心房出租中", rating: "7.7", duration: "1h45m"},
+        {img: "lovePic/lovePic9.png", title: "你的名字在我通訊錄裡", rating: "9.4", duration: "1h13m"},
+        {img: "lovePic/lovePic10.png", title: "月光下的第二次心動", rating: "6.2", duration: "2h03m"},
+        {img: "lovePic/lovePic11.png", title: "如果時間願意等我們", rating: "8.9", duration: "1h20m"},
+        {img: "lovePic/lovePic12.png", title: "未寄出的情書", rating: "6.4", duration: "1h42m"},
+      ],
+      /* ── 恐怖分類 ── */
+      '恐怖': [
+        {img: "horrorPic/horrorPic1.png", title: "深夜十二點的門鈴", rating: "7.6", duration: "2h08m"},
+        {img: "horrorPic/horrorPic2.png", title: "空屋裡的第四個人", rating: "8.3", duration: "1h37m"},
+        {img: "horrorPic/horrorPic3.png", title: "沒有地址的來信", rating: "9.1", duration: "1h19m"},
+        {img: "horrorPic/horrorPic4.png", title: "紅燈亮起之後", rating: "6.5", duration: "1h31m"},
+        {img: "horrorPic/horrorPic5.png", title: "鏡子不再反射", rating: "5.2", duration: "1h24m"},
+        {img: "horrorPic/horrorPic6.png", title: "地下室的祕密住戶", rating: "6.4", duration: "2h22m"},
+        {img: "horrorPic/horrorPic7.png", title: "雨夜裡的倒數聲", rating: "8.2", duration: "1h23m"},
+        {img: "horrorPic/horrorPic8.png", title: "停電之後別回頭", rating: "7.7", duration: "1h45m"},
+        {img: "horrorPic/horrorPic9.png", title: "失蹤的第七天", rating: "9.4", duration: "1h13m"},
+        {img: "horrorPic/horrorPic10.png", title: "房號404", rating: "6.2", duration: "2h03m"},
+        {img: "horrorPic/horrorPic11.png", title: "影子搬家了", rating: "8.9", duration: "1h20m"},
+        {img: "horrorPic/horrorPic12.png", title: "走廊沒有盡頭", rating: "6.4", duration: "1h42m"},
+      ],
+      /* ── 懸疑分類 ── */
+      '懸疑': [
+        {img: "susPic/susPic1.png", title: "昨日的嫌疑人", rating: "7.6", duration: "2h08m"},
+        {img: "susPic/susPic2.png", title: "無法證明的真相", rating: "8.3", duration: "1h37m"},
+        {img: "susPic/susPic3.png", title: "第八號證人", rating: "9.1", duration: "1h19m"},
+        {img: "susPic/susPic4.png", title: "城市沒有記憶", rating: "6.5", duration: "1h31m"},
+        {img: "susPic/susPic5.png", title: "交換人生計畫", rating: "5.2", duration: "1h24m"},
+        {img: "susPic/susPic6.png", title: "完美不在場證明", rating: "6.4", duration: "2h22m"},
+        {img: "susPic/susPic7.png", title: "消失的時間線", rating: "8.2", duration: "1h23m"},
+        {img: "susPic/susPic8.png", title: "沉默的目擊者", rating: "7.7", duration: "1h45m"},
+        {img: "susPic/susPic9.png", title: "黑名單之外", rating: "9.4", duration: "1h13m"},
+        {img: "susPic/susPic10.png", title: "偽證者聯盟", rating: "6.2", duration: "2h03m"},
+        {img: "susPic/susPic11.png", title: "失控的調查筆記", rating: "8.9", duration: "1h20m"},
+        {img: "susPic/susPic12.png", title: "倒數24小時", rating: "6.4", duration: "1h42m"},
+      ],
+      /* ── 喜劇分類 ── */
+      '喜劇': [
+        {img: "funPic/funPic1.png", title: "老闆今天不上班", rating: "7.6", duration: "2h08m"},
+        {img: "funPic/funPic2.png", title: "隔壁鄰居很奇怪", rating: "8.3", duration: "1h37m"},
+        {img: "funPic/funPic3.png", title: "我不是天才只是運氣好", rating: "9.1", duration: "1h19m"},
+        {img: "funPic/funPic4.png", title: "全公司都誤會我", rating: "6.5", duration: "1h31m"},
+        {img: "funPic/funPic5.png", title: "突然成為網紅", rating: "5.2", duration: "1h24m"},
+        {img: "funPic/funPic6.png", title: "家裡多了一個人", rating: "6.4", duration: "2h22m"},
+        {img: "funPic/funPic7.png", title: "室友其實是影帝", rating: "8.2", duration: "1h23m"},
+        {img: "funPic/funPic8.png", title: "轉職失敗人生", rating: "7.7", duration: "1h45m"},
+        {img: "funPic/funPic9.png", title: "婚禮前一天失憶", rating: "9.4", duration: "1h13m"},
+        {img: "funPic/funPic10.png", title: "全村都知道我的秘密", rating: "6.2", duration: "2h03m"},
+        {img: "funPic/funPic11.png", title: "社恐也要談戀愛", rating: "8.9", duration: "1h20m"},
+        {img: "funPic/funPic12.png", title: "這不是我想要的人生", rating: "6.4", duration: "1h42m"},
+      ],
+    }
+    /**
+ * 渲染電影網格
+ * @param {Array} movies - 傳入特定分類的 12 部電影陣列
+ */
+function renderHotGrid(movies) {
+  const grid = document.getElementById('hot-grid');
+  if (!grid || !movies) return;
+
+  const html = movies.map(movie => `
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="${movie.img}" alt="${movie.title}">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">${movie.title}</div>
+        <div class="hot-card-meta">
+          <i class="fas fa-star star"></i>${movie.rating}&nbsp;
+          <i class="fas fa-clock"></i>${movie.duration}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // 2. 執行切換動畫：先淡出
+  grid.style.opacity = '0';
+  grid.style.transition = 'opacity 0.3s ease';
+
+  // 3. 替換內容後再淡入
+  setTimeout(() => {
+    grid.innerHTML = html;
+    grid.style.opacity = '1';
+  }, 300);
+}
+
+/**
+ * 分類按鈕切換
+ */
+function switchHotCategory(category, btn) {
+  // 1. 處理按鈕的高亮狀態 (Active)
+  const buttons = document.querySelectorAll('.filter-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // 2. 根據分類抓取資料並重新渲染
+  const selectedData = hotMovies[category];
+  if (selectedData) {
+    renderHotGrid(selectedData);
+  }
+}
+
+// 頁面初次載入時，預設顯示「浪漫」
+document.addEventListener('DOMContentLoaded', () => {
+  switchHotCategory('浪漫', document.querySelector('.filter-btn:first-child'));
+});
 </script>
 
 </body>

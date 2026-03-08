@@ -279,157 +279,20 @@
      圖片固定 2:3 長方形比例（不因切版變形）
      hover 效果：整個卡片（圖 + 文）一起放大 + 紅色邊框
      ===================================================== -->
-<section class="section" id="hot">
-
+  <section class="section" id="hot">
   <!-- 區塊標題列：左側標題 + 右側篩選選單 -->
   <div class="section-header">
     <h2 class="section-title">熱門精選</h2>
     <div class="section-menu">
-      <button onclick="setActive(this)">浪漫</button>
-      <button onclick="setActive(this)">恐怖</button>
-      <button onclick="setActive(this)">懸疑</button>
-      <button class="active" onclick="setActive(this)">喜劇</button>
+      <button class="filter-btn active" onclick="switchHotCategory('浪漫', this)">浪漫</button>
+      <button class="filter-btn" onclick="switchHotCategory('恐怖', this)">恐怖</button>
+      <button class="filter-btn" onclick="switchHotCategory('懸疑', this)">懸疑</button>
+      <button class="filter-btn" onclick="switchHotCategory('喜劇', this)">喜劇</button>
     </div>
   </div>
-
-  <!-- 熱門精選 6 欄網格 -->
-  <div class="hot-grid">
-
-    <!-- 熱門精選卡片 01 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/247/300/450" alt="轉生成便利商店冰箱">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">轉生成便利商店冰箱</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.6&nbsp;<i class="fas fa-clock"></i>1h50m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 02 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/248/300/450" alt="社恐勇者討伐魔王">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">社恐勇者討伐魔王</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.2&nbsp;<i class="fas fa-clock"></i>2h15m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 03 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/249/300/450" alt="班長其實是外星人">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">班長其實是外星人</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.7&nbsp;<i class="fas fa-clock"></i>2h08m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 04 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/250/300/450" alt="隔壁鄰居每天在拯救世界">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">隔壁鄰居每天在拯救世界</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.4&nbsp;<i class="fas fa-clock"></i>1h48m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 05 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/251/300/450" alt="我家的貓想統治地球">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">我家的貓想統治地球</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.5&nbsp;<i class="fas fa-clock"></i>2h35m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 06 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/252/300/450" alt="戀愛腦禁止入學">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">戀愛腦禁止入學</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>9.1&nbsp;<i class="fas fa-clock"></i>2h42m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 07 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/253/300/450" alt="魔王今天請病假">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">魔王今天請病假</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.8&nbsp;<i class="fas fa-clock"></i>1h55m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 08 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/254/300/450" alt="廢柴天才養成計畫">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">廢柴天才養成計畫</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.0&nbsp;<i class="fas fa-clock"></i>2h20m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 09 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/255/300/450" alt="全班只有我沒有超能力">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">全班只有我沒有超能力</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.3&nbsp;<i class="fas fa-clock"></i>1h40m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 10 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/256/300/450" alt="勇者轉職成客服人員">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">勇者轉職成客服人員</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.9&nbsp;<i class="fas fa-clock"></i>2h28m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 11 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/257/300/450" alt="我的室友是最終Boss">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">我的室友是最終Boss</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.7&nbsp;<i class="fas fa-clock"></i>2h02m</div>
-      </div>
-    </div>
-
-    <!-- 熱門精選卡片 12 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/258/300/450" alt="魔法少女退休生活">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">魔法少女退休生活</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.4&nbsp;<i class="fas fa-clock"></i>1h58m</div>
-      </div>
-    </div>
-
-  </div><!-- end .hot-grid -->
-
+  <div id="hot-grid" class="hot-grid"></div>
 </section><!-- end 熱門精選 -->
+
 
 <!-- =====================================================
      更多動漫區塊（More Movies）
@@ -806,6 +669,123 @@
     }
   }, 500);
 
+/*── 四個分類的電影資料 ── */
+    let hotMovies = {
+      /* ── 浪漫分類 ── */
+      '浪漫': [
+        {img: "lovePic/lovePic1.png", title: "告白在日落之後", rating: "7.6", duration: "2h08m"},
+        {img: "lovePic/lovePic2.png", title: "借來的心跳聲", rating: "8.3", duration: "1h37m"},
+        {img: "lovePic/lovePic3.png", title: "櫻色導航系統", rating: "9.1", duration: "1h19m"},
+        {img: "lovePic/lovePic4.png", title: "戀愛預報90%", rating: "6.5", duration: "1h31m"},
+        {img: "lovePic/lovePic5.png", title: "回憶只剩你未刪除", rating: "5.2", duration: "1h24m"},
+        {img: "lovePic/lovePic6.png", title: "放學後的第零次告白", rating: "6.4", duration: "2h22m"},
+        {img: "lovePic/lovePic7.png", title: "星座說我們會分開", rating: "8.2", duration: "1h23m"},
+        {img: "lovePic/lovePic8.png", title: "戀愛體溫37.8℃", rating: "7.7", duration: "1h45m"},
+        {img: "lovePic/lovePic9.png", title: "那年夏天沒有結束", rating: "9.4", duration: "1h13m"},
+        {img: "lovePic/lovePic10.png", title: "透明情書實驗室", rating: "6.2", duration: "2h03m"},
+        {img: "lovePic/lovePic11.png", title: "你的名字還沒出現", rating: "8.9", duration: "1h20m"},
+        {img: "lovePic/lovePic12.png", title: "最後一次心動練習", rating: "6.4", duration: "1h42m"},
+      ],
+      /* ── 恐怖分類 ── */
+      '恐怖': [
+        {img: "horrorPic/horrorPic1.png", title: "深夜自習室第九排", rating: "7.6", duration: "2h08m"},
+        {img: "horrorPic/horrorPic2.png", title: "電梯顯示-1樓", rating: "8.3", duration: "1h37m"},
+        {img: "horrorPic/horrorPic3.png", title: "笑聲來自天花板", rating: "9.1", duration: "1h19m"},
+        {img: "horrorPic/horrorPic4.png", title: "沒有瞳孔的照片", rating: "6.5", duration: "1h31m"},
+        {img: "horrorPic/horrorPic5.png", title: "替身出席者", rating: "5.2", duration: "1h24m"},
+        {img: "horrorPic/horrorPic6.png", title: "白色雨夜", rating: "6.4", duration: "2h22m"},
+        {img: "horrorPic/horrorPic7.png", title: "404號病房", rating: "8.2", duration: "1h23m"},
+        {img: "horrorPic/horrorPic8.png", title: "停格的監視畫面", rating: "7.7", duration: "1h45m"},
+        {img: "horrorPic/horrorPic9.png", title: "影子晚歸", rating: "9.4", duration: "1h13m"},
+        {img: "horrorPic/horrorPic10.png", title: "校車最後一站", rating: "6.2", duration: "2h03m"},
+        {img: "horrorPic/horrorPic11.png", title: "無人接聽的廣播室", rating: "8.9", duration: "1h20m"},
+        {img: "horrorPic/horrorPic12.png", title: "門外的腳步數到十", rating: "6.4", duration: "1h42m"},
+      ],
+      /* ── 懸疑分類 ── */
+      '懸疑': [
+        {img: "susPic/susPic1.png", title: "昨日嫌疑人", rating: "7.6", duration: "2h08m"},
+        {img: "susPic/susPic2.png", title: "城市記憶備份檔", rating: "8.3", duration: "1h37m"},
+        {img: "susPic/susPic3.png", title: "第十二個旁觀者", rating: "9.1", duration: "1h19m"},
+        {img: "susPic/susPic4.png", title: "說謊者的指紋", rating: "6.5", duration: "1h31m"},
+        {img: "susPic/susPic5.png", title: "沉睡證據", rating: "5.2", duration: "1h24m"},
+        {img: "susPic/susPic6.png", title: "消失的監控角度", rating: "6.4", duration: "2h22m"},
+        {img: "susPic/susPic7.png", title: "錯誤時間線", rating: "8.2", duration: "1h23m"},
+        {img: "susPic/susPic8.png", title: "交換不在場證明", rating: "7.7", duration: "1h45m"},
+        {img: "susPic/susPic9.png", title: "複製人格計畫", rating: "9.4", duration: "1h13m"},
+        {img: "susPic/susPic10.png", title: "密室之外", rating: "6.2", duration: "2h03m"},
+        {img: "susPic/susPic11.png", title: "匿名檔案X", rating: "8.9", duration: "1h20m"},
+        {img: "susPic/susPic12.png", title: "最後的版本更新", rating: "6.4", duration: "1h42m"},
+      ],
+      /* ── 喜劇分類 ── */
+      '喜劇': [
+        {img: "funPic/funPic1.png", title: "魔王的實習第一天", rating: "7.6", duration: "2h08m"},
+        {img: "funPic/funPic2.png", title: "全村最弱勇者", rating: "8.3", duration: "1h37m"},
+        {img: "funPic/funPic3.png", title: "打工拯救世界", rating: "9.1", duration: "1h19m"},
+        {img: "funPic/funPic4.png", title: "我的技能是吐槽", rating: "6.5", duration: "1h31m"},
+        {img: "funPic/funPic5.png", title: "外星人轉學生很普通", rating: "5.2", duration: "1h24m"},
+        {img: "funPic/funPic6.png", title: "社團經費爭奪戰", rating: "6.4", duration: "2h22m"},
+        {img: "funPic/funPic7.png", title: "魔法少女不上班", rating: "8.2", duration: "1h23m"},
+        {img: "funPic/funPic8.png", title: "天才其實搞錯了", rating: "7.7", duration: "1h45m"},
+        {img: "funPic/funPic9.png", title: "勇者的休假申請", rating: "9.4", duration: "1h13m"},
+        {img: "funPic/funPic10.png", title: "轉生後我還是社畜", rating: "6.2", duration: "2h03m"},
+        {img: "funPic/funPic11.png", title: "貓咪部長上任中", rating: "8.9", duration: "1h20m"},
+        {img: "funPic/funPic12.png", title: "全校第一倒數", rating: "6.4", duration: "1h42m"},
+      ],
+    }
+    /**
+ * 渲染電影網格
+ * @param {Array} movies - 傳入特定分類的 12 部電影陣列
+ */
+function renderHotGrid(movies) {
+  const grid = document.getElementById('hot-grid');
+  if (!grid || !movies) return;
+
+  const html = movies.map(movie => `
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="${movie.img}" alt="${movie.title}">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">${movie.title}</div>
+        <div class="hot-card-meta">
+          <i class="fas fa-star star"></i>${movie.rating}&nbsp;
+          <i class="fas fa-clock"></i>${movie.duration}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // 2. 執行切換動畫：先淡出
+  grid.style.opacity = '0';
+  grid.style.transition = 'opacity 0.3s ease';
+
+  // 3. 替換內容後再淡入
+  setTimeout(() => {
+    grid.innerHTML = html;
+    grid.style.opacity = '1';
+  }, 300);
+}
+
+/**
+ * 分類按鈕切換
+ */
+function switchHotCategory(category, btn) {
+  // 1. 處理按鈕的高亮狀態 (Active)
+  const buttons = document.querySelectorAll('.filter-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // 2. 根據分類抓取資料並重新渲染
+  const selectedData = hotMovies[category];
+  if (selectedData) {
+    renderHotGrid(selectedData);
+  }
+}
+
+// 頁面初次載入時，預設顯示「浪漫」
+document.addEventListener('DOMContentLoaded', () => {
+  switchHotCategory('浪漫', document.querySelector('.filter-btn:first-child'));
+});
 </script>
 
 </body>

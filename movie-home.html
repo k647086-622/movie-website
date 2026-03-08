@@ -295,6 +295,7 @@
 
 </section><!-- end 熱門精選 -->
 
+
 <!-- =====================================================
      更多電影區塊（More Movies）
      放置位置：熱門精選區塊（#hot）的下方
@@ -759,8 +760,8 @@ function renderHotGrid(movies) {
   grid.style.opacity = '0';
   grid.style.transition = 'opacity 0.3s ease';
 
+  // 3. 替換內容後再淡入
   setTimeout(() => {
-    // 3. 替換內容後再淡入
     grid.innerHTML = html;
     grid.style.opacity = '1';
   }, 300);
