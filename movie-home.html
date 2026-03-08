@@ -144,129 +144,18 @@
   <!-- 區塊標題列：左側標題 + 右側篩選選單 -->
   <div class="section-header">
     <h2 class="section-title">最新電影</h2>
-    <div class="section-menu">
-      <button class="active" onclick="setActive(this)">浪漫</button>
-      <button onclick="setActive(this)">恐怖</button>
-      <button onclick="setActive(this)">懸疑</button>
-      <button onclick="setActive(this)">喜劇</button>
+    <div class="section-menu" id="latest-menu">
+      <button class="filter-btn active" onclick="switchLatestCategory('浪漫', this)">浪漫</button>
+      <button class="filter-btn" onclick="switchLatestCategory('恐怖', this)">恐怖</button>
+      <button class="filter-btn" onclick="switchLatestCategory('懸疑', this)">懸疑</button>
+      <button class="filter-btn" onclick="switchLatestCategory('喜劇', this)">喜劇</button>
     </div>
   </div>
 
   <!-- 水平滾動外層容器（overflow-y: visible 讓 hover 放大不被裁切） -->
   <div class="scroll-track-wrapper">
     <!-- 卡片軌道 -->
-    <div class="scroll-track">
-
-      <!-- 最新電影卡片 01 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic1.png" alt="霓虹深處的邂逅">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">霓虹深處的邂逅</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.4&nbsp;<i class="fas fa-clock"></i>1h52m</div>
-        </div>
-      </div>
-
-      <!-- 最新電影卡片 02 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic2.png" alt="時光之約">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">時光之約</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>7.8&nbsp;<i class="fas fa-clock"></i>2h05m</div>
-        </div>
-      </div>
-
-      <!-- 最新電影卡片 03 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic3.png" alt="最後一封情書">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">最後一封情書</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.1&nbsp;<i class="fas fa-clock"></i>1h40m</div>
-        </div>
-      </div>
-
-      <!-- 最新電影卡片 04 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic4.png" alt="擁抱星空">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">擁抱星空</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>9.0&nbsp;<i class="fas fa-clock"></i>2h18m</div>
-        </div>
-      </div>
-
-      <!-- 最新電影卡片 05 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic5.png" alt="琴聲繚繞">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">琴聲繚繞</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>7.5&nbsp;<i class="fas fa-clock"></i>1h58m</div>
-        </div>
-      </div>
-
-      <!-- 最新電影卡片 06 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic6.png" alt="愛在雨中蔓延">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">愛在雨中蔓延</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.6&nbsp;<i class="fas fa-clock"></i>2h30m</div>
-        </div>
-      </div>
-
-      <!-- 最新電影卡片 07 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic7.png" alt="遇見你，真好">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">遇見你，真好</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>7.2&nbsp;<i class="fas fa-clock"></i>1h45m</div>
-        </div>
-      </div>
-
-      <!-- 最新電影卡片 08 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic8.png" alt="守候一生的承諾">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">守候一生的承諾</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.8&nbsp;<i class="fas fa-clock"></i>2h10m</div>
-        </div>
-      </div>
-
-      <!-- 最新電影卡片 09 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic9.png" alt="愛，一直在">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">愛，一直在</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>8.3&nbsp;<i class="fas fa-clock"></i>2h22m</div>
-        </div>
-      </div>
-
-      <!-- 最新電影卡片 10 -->
-      <div class="latest-card">
-        <div class="latest-card-img-wrap">
-          <img class="latest-card-img" src="lovePic/lovePic10.png" alt="夢中的婚禮">
-        </div>
-        <div class="latest-card-info">
-          <div class="latest-card-title">夢中的婚禮</div>
-          <div class="latest-card-meta"><i class="fas fa-star star"></i>7.9&nbsp;<i class="fas fa-clock"></i>1h55m</div>
-        </div>
-      </div>
-
+    <div class="scroll-track" id="latest-grid">
     </div><!-- end .scroll-track -->
   </div><!-- end .scroll-track-wrapper -->
 
@@ -284,7 +173,7 @@
   <!-- 區塊標題列：左側標題 + 右側篩選選單 -->
   <div class="section-header">
     <h2 class="section-title">熱門精選</h2>
-    <div class="section-menu">
+    <div class="section-menu" id="hot-menu">
       <button class="filter-btn active" onclick="switchHotCategory('浪漫', this)">浪漫</button>
       <button class="filter-btn" onclick="switchHotCategory('恐怖', this)">恐怖</button>
       <button class="filter-btn" onclick="switchHotCategory('懸疑', this)">懸疑</button>
@@ -670,7 +559,111 @@
       }
     }
   }, 500);
-  /*── 四個分類的電影資料 ── */
+
+  /*── 最新電影四個電影資料 ── */
+    let newMovies = {
+      /* ── 浪漫分類 ── */
+      '浪漫': [
+        {img: "lovePic/lovePic12.png", title: "愛的力量", rating: "7.6", duration: "2h08m"},
+        {img: "lovePic/lovePic11.png", title: "情牽一生", rating: "8.3", duration: "1h37m"},
+        {img: "lovePic/lovePic10.png", title: "夢中的婚禮", rating: "9.1", duration: "1h19m"},
+        {img: "lovePic/lovePic9.png", title: "愛，一直在", rating: "6.5", duration: "1h31m"},
+        {img: "lovePic/lovePic8.png", title: "守候一生的承諾", rating: "5.2", duration: "1h24m"},
+        {img: "lovePic/lovePic7.png", title: "遇見你，真好", rating: "6.4", duration: "2h22m"},
+        {img: "lovePic/lovePic6.png", title: "愛在雨中蔓延", rating: "8.2", duration: "1h23m"},
+        {img: "lovePic/lovePic5.png", title: "琴聲繚繞", rating: "7.7", duration: "1h45m"},
+        {img: "lovePic/lovePic4.png", title: "擁抱星空", rating: "9.4", duration: "1h13m"},
+        {img: "lovePic/lovePic3.png", title: "最後一封情書", rating: "6.2", duration: "2h03m"}
+      ],
+      /* ── 恐怖分類 ── */
+      '恐怖': [
+        {img: "horrorPic/horrorPic12.png", title: "亡靈歸來", rating: "7.6", duration: "2h08m"},
+        {img: "horrorPic/horrorPic11.png", title: "寂靜殺機", rating: "8.3", duration: "1h37m"},
+        {img: "horrorPic/horrorPic10.png", title: "活死人墓", rating: "9.1", duration: "1h19m"},
+        {img: "horrorPic/horrorPic9.png", title: "厲鬼現形", rating: "6.5", duration: "1h31m"},
+        {img: "horrorPic/horrorPic8.png", title: "惡魔交易", rating: "5.2", duration: "1h24m"},
+        {img: "horrorPic/horrorPic7.png", title: "深淵凝視", rating: "6.4", duration: "2h22m"},
+        {img: "horrorPic/horrorPic6.png", title: "亡靈嘉年華", rating: "8.2", duration: "1h23m"},
+        {img: "horrorPic/horrorPic5.png", title: "血色森林", rating: "7.7", duration: "1h45m"},
+        {img: "horrorPic/horrorPic4.png", title: "咒怨凶宅", rating: "9.4", duration: "1h13m"},
+        {img: "horrorPic/horrorPic3.png", title: "厲鬼附身", rating: "6.2", duration: "2h03m"}
+      ],
+      /* ── 懸疑分類 ── */
+      '懸疑': [
+        {img: "susPic/susPic12.png", title: "最終的線索", rating: "7.6", duration: "2h08m"},
+        {img: "susPic/susPic11.png", title: "謊言的遺產", rating: "8.3", duration: "1h37m"},
+        {img: "susPic/susPic10.png", title: "獵殺潛伏", rating: "9.1", duration: "1h19m"},
+        {img: "susPic/susPic9.png", title: "影子城市", rating: "6.5", duration: "1h31m"},
+        {img: "susPic/susPic8.png", title: "深淵的訊號", rating: "5.2", duration: "1h24m"},
+        {img: "susPic/susPic7.png", title: "記憶裂痕", rating: "6.4", duration: "2h22m"},
+        {img: "susPic/susPic6.png", title: "密室遺言", rating: "8.2", duration: "1h23m"},
+        {img: "susPic/susPic5.png", title: "時光編碼", rating: "7.7", duration: "1h45m"},
+        {img: "susPic/susPic4.png", title: "謊言的碎片", rating: "9.4", duration: "1h13m"},
+        {img: "susPic/susPic3.png", title: "最後的晚餐", rating: "6.2", duration: "2h03m"}
+      ],
+      /* ── 喜劇分類 ── */
+      '喜劇': [
+        {img: "funPic/funPic12.png", title: "金牌大廚", rating: "7.6", duration: "2h08m"},
+        {img: "funPic/funPic11.png", title: "狗狗特工", rating: "8.3", duration: "1h37m"},
+        {img: "funPic/funPic10.png", title: "求愛特攻隊", rating: "9.1", duration: "1h19m"},
+        {img: "funPic/funPic9.png", title: "老闆不在家", rating: "6.5", duration: "1h31m"},
+        {img: "funPic/funPic8.png", title: "我的機器人女友", rating: "5.2", duration: "1h24m"},
+        {img: "funPic/funPic7.png", title: "瘋狂大拍賣", rating: "6.4", duration: "2h22m"},
+        {img: "funPic/funPic6.png", title: "重返十七歲", rating: "8.2", duration: "1h23m"},
+        {img: "funPic/funPic5.png", title: "荒島大逃殺", rating: "7.7", duration: "1h45m"},
+        {img: "funPic/funPic4.png", title: "我的室友是外星人", rating: "9.4", duration: "1h13m"},
+        {img: "funPic/funPic3.png", title: "烏龍特警", rating: "6.2", duration: "2h03m"}
+      ]
+    }
+    /**
+  *渲染電影網格
+  *@parem {Array} movies - 傳入特定分類的 10 部電影陣列
+    */
+function renderLatestGrid(movies) {
+  const grid = document.getElementById('latest-grid');
+  if (!grid || !movies) return;
+
+  const html = movies.map(movie => `
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <a href="${movie.link}">
+            <img class="latest-card-img" src="${movie.img}" alt="${movie.title}">
+          </a>
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">${movie.title}</div>
+          <div class="latest-card-meta">
+            <i class="fas fa-star star"></i>${movie.rating}&nbsp;
+            <i class="fas fa-clock"></i>${movie.duration}
+          </div>
+        </div>
+      </div>
+  `).join('');
+
+  grid.style.opacity = '0';
+  grid.style.transition = 'opacity 0.3s ease';
+
+  setTimeout(() => {
+    grid.innerHTML = html;
+    grid.style.opacity = '1';
+  }, 300);
+}
+
+function switchLatestCategory(category, btn) {
+  // 1. 處理按鈕的高亮狀態 (Active)
+  const buttons = document.querySelectorAll('#latest-menu .filter-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // 2. 根據分類抓取資料並重新渲染
+  const selectedData = hotMovies[category];
+  if (selectedData) {
+    renderLatestGrid(selectedData);
+  }
+}
+    
+
+  /*── 熱門精選四個電影資料 ── */
     let hotMovies = {
       /* ── 浪漫分類 ── */
       '浪漫': [
@@ -772,7 +765,7 @@ function renderHotGrid(movies) {
  */
 function switchHotCategory(category, btn) {
   // 1. 處理按鈕的高亮狀態 (Active)
-  const buttons = document.querySelectorAll('.filter-btn');
+  const buttons = document.querySelectorAll('#hot-menu .filter-btn');
   buttons.forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
 
@@ -785,7 +778,8 @@ function switchHotCategory(category, btn) {
 
 // 頁面初次載入時，預設顯示「浪漫」
 document.addEventListener('DOMContentLoaded', () => {
-  switchHotCategory('浪漫', document.querySelector('.filter-btn:first-child'));
+  switchHotCategory('浪漫', document.querySelector('#hot-menu .filter-btn:first-child'));
+  switchLatestCategory('浪漫', document.querySelector('#latest-menu .filter-btn:first-child'));
 });
 </script>
 
