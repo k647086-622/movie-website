@@ -140,7 +140,6 @@
      hover 效果：圖片以 bottom center 為基準向上放大，不裁切上方
      ===================================================== -->
 <section class="section" id="latest">
-
   <!-- 區塊標題列：左側標題 + 右側篩選選單 -->
   <div class="section-header">
     <h2 class="section-title">最新電影</h2>
@@ -151,14 +150,12 @@
       <button class="filter-btn" onclick="switchLatestCategory('喜劇', this)">喜劇</button>
     </div>
   </div>
-
   <!-- 水平滾動外層容器（overflow-y: visible 讓 hover 放大不被裁切） -->
   <div class="scroll-track-wrapper">
     <!-- 卡片軌道 -->
     <div class="scroll-track" id="latest-grid">
     </div><!-- end .scroll-track -->
   </div><!-- end .scroll-track-wrapper -->
-
 </section><!-- end 最新電影 -->
 
 
@@ -169,7 +166,6 @@
      hover 效果：整個卡片（圖 + 文）一起放大 + 紅色邊框
      ===================================================== -->
 <section class="section" id="hot">
-
   <!-- 區塊標題列：左側標題 + 右側篩選選單 -->
   <div class="section-header">
     <h2 class="section-title">熱門精選</h2>
@@ -181,7 +177,6 @@
     </div>
   </div>
   <div id="hot-grid" class="hot-grid"></div>
-
 </section><!-- end 熱門精選 -->
 
 
@@ -190,154 +185,18 @@
      放置位置：熱門精選區塊（#hot）的下方
      格式與熱門精選完全相同，圖片從 id/260 開始
      ===================================================== -->
-
 <section class="section" id="more">
-
   <!-- 區塊標題列：左側標題 + 右側 More 連結 -->
   <div class="section-header">
     <h2 class="section-title">更多電影</h2>
     <!-- More 連結：靠右，點擊可導向更多電影頁面 -->
     <a href="#" class="more-link">More <i class="fas fa-chevron-right"></i></a>
   </div>
-
   <!-- 更多電影 6 欄網格（與熱門精選共用 .hot-grid / .hot-card 樣式） -->
-  <div class="hot-grid">
-
-    <!-- 更多電影卡片 01 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/260/300/450" alt="幽靈列車">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">幽靈列車</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.9&nbsp;<i class="fas fa-clock"></i>1h52m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 02 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/261/300/450" alt="寂靜之地">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">寂靜之地</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.3&nbsp;<i class="fas fa-clock"></i>2h10m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 03 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/262/300/450" alt="午夜狂奔">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">午夜狂奔</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.5&nbsp;<i class="fas fa-clock"></i>1h45m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 04 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/263/300/450" alt="霧中孤島">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">霧中孤島</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.6&nbsp;<i class="fas fa-clock"></i>2h25m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 05 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/264/300/450" alt="烈焰追擊">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">烈焰追擊</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.2&nbsp;<i class="fas fa-clock"></i>1h58m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 06 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/265/300/450" alt="異鄉流浪">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">異鄉流浪</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>9.0&nbsp;<i class="fas fa-clock"></i>2h38m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 07 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/266/300/450" alt="碎片人生">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">碎片人生</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.1&nbsp;<i class="fas fa-clock"></i>1h50m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 08 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/267/300/450" alt="蒼穹之戰">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">蒼穹之戰</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.7&nbsp;<i class="fas fa-clock"></i>2h15m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 09 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/268/300/450" alt="暗影獵人">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">暗影獵人</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.8&nbsp;<i class="fas fa-clock"></i>2h05m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 10 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/269/300/450" alt="時間旅人">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">時間旅人</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.4&nbsp;<i class="fas fa-clock"></i>1h42m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 11 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/270/300/450" alt="永恆輪迴">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">永恆輪迴</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>8.5&nbsp;<i class="fas fa-clock"></i>2h30m</div>
-      </div>
-    </div>
-
-    <!-- 更多電影卡片 12 -->
-    <div class="hot-card">
-      <div class="hot-card-img-wrap">
-        <img class="hot-card-img" src="https://picsum.photos/id/271/300/450" alt="邊界之外">
-      </div>
-      <div class="hot-card-info">
-        <div class="hot-card-title">邊界之外</div>
-        <div class="hot-card-meta"><i class="fas fa-star star"></i>7.6&nbsp;<i class="fas fa-clock"></i>1h48m</div>
-      </div>
-    </div>
-
+  <div class="hot-grid" id="more-grid">
   </div><!-- end .hot-grid -->
-
 </section><!-- end 更多電影 -->
+
 
 <!-- =====================================================
      電影介紹區塊（Movie Introduction）
@@ -561,7 +420,7 @@
   }, 500);
 
   /*── 最新電影四個電影資料 ── */
-    let newMovies = {
+    let latestMovies = {
       /* ── 浪漫分類 ── */
       '浪漫': [
         {img: "lovePic/lovePic12.png", title: "愛的力量", rating: "7.6", duration: "2h08m"},
@@ -656,7 +515,7 @@ function switchLatestCategory(category, btn) {
   if (btn) btn.classList.add('active');
 
   // 2. 根據分類抓取資料並重新渲染
-  const selectedData = hotMovies[category];
+  const selectedData = latestMovies[category];
   if (selectedData) {
     renderLatestGrid(selectedData);
   }
@@ -776,10 +635,53 @@ function switchHotCategory(category, btn) {
   }
 }
 
+
+/*── 更多電影的電影資料 ── */
+    let moreMovies = [
+        {img: "lovePic/lovePic1.png", title: "霓虹深處的邂逅", rating: "7.6", duration: "2h08m"},
+        {img: "horrorPic/horrorPic2.png", title: "時光之約", rating: "8.3", duration: "1h37m"},
+        {img: "susPic/susPic3.png", title: "最後一封情書", rating: "9.1", duration: "1h19m"},
+        {img: "funPic/funPic4.png", title: "擁抱星空", rating: "6.5", duration: "1h31m"},
+        {img: "lovePic/lovePic5.png", title: "琴聲繚繞", rating: "5.2", duration: "1h24m"},
+        {img: "horrorPic/horrorPic6.png", title: "愛在雨中蔓延", rating: "6.4", duration: "2h22m"},
+        {img: "susPic/susPic7.png", title: "遇見你，真好", rating: "8.2", duration: "1h23m"},
+        {img: "funPic/funPic8.png", title: "守候一生的承諾", rating: "7.7", duration: "1h45m"},
+        {img: "lovePic/lovePic9.png", title: "愛，一直在", rating: "9.4", duration: "1h13m"},
+        {img: "horrorPic/horrorPic10.png", title: "夢中的婚禮", rating: "6.2", duration: "2h03m"},
+        {img: "susPic/susPic11.png", title: "情牽一生", rating: "8.9", duration: "1h20m"},
+        {img: "funPic/funPic12.png", title: "愛的力量", rating: "6.4", duration: "1h42m"}
+      ];
+    /**
+ * 渲染電影網格
+ * @param {Array} movies - 傳入無需分類的 12 部電影陣列
+ */
+function renderMoreGrid(movies){
+  const grid = document.getElementById('more-grid');
+  if (!grid || !movies) return;
+
+  const html = movies.map(movie => `
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="${movie.img}" alt="${movie.title}">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">${movie.title}</div>
+        <div class="hot-card-meta">
+          <i class="fas fa-star star"></i>${movie.rating}&nbsp;
+          <i class="fas fa-clock"></i>${movie.duration}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  grid.innerHTML = html;
+}
+
 // 頁面初次載入時，預設顯示「浪漫」
 document.addEventListener('DOMContentLoaded', () => {
   switchHotCategory('浪漫', document.querySelector('#hot-menu .filter-btn:first-child'));
   switchLatestCategory('浪漫', document.querySelector('#latest-menu .filter-btn:first-child'));
+  renderMoreGrid(moreMovies);
 });
 </script>
 
