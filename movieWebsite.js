@@ -382,7 +382,7 @@ function renderIntroGrid(movies) {
           </div>
 
             <div class="intro-tags">
-            ${movie.tags.map(tags => `<span class="intro-tags">${tags}</span>`).join('')}
+            ${movie.tags.map(tags => `<span class="intro-tag">${tags}</span>`).join('')}
             </div>
 
             <p class="intro-desc">${movie.desc1}</p>
