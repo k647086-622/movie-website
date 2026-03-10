@@ -1738,30 +1738,23 @@ footer p { font-size: 12px; color: var(--text-muted); }
 
   /* 熱門精選：螢幕縮小後從 6 欄改為 4 欄排列 */
   .hot-grid { grid-template-columns: repeat(4, 1fr); }
-
   /* 電影介紹：左側海報欄寬從 300px 縮為 240px，間距也縮小 */
   .intro-layout { grid-template-columns: 240px 1fr; gap: 24px; }
-
   /* 關於我們：團隊成員維持 4 欄，但卡片間距縮小 */
   .team-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
-
   /* 關於我們：公司介紹左右兩欄之間的間距縮小 */
   .company-layout { gap: 40px; }
-
   /* 關於我們：公司圖片右下角浮動標籤往內縮，避免超出邊界 */
   .company-badge { right: -10px; bottom: -10px; }
-
   /* 服務支援中心：從 4 欄縮為 2 欄排列 */
   .help-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
 
 /* ── 平板版（768px 以下）── */
 @media (max-width: 768px) {
 
   /* 全域左右內距縮小為 20px */
   :root { --padding-x: 20px; }
-
   /* 導覽選單：預設隱藏，點漢堡按鈕後展開 */
   nav {
     display: none;                          /* 預設隱藏 */
@@ -1779,10 +1772,8 @@ footer p { font-size: 12px; color: var(--text-muted); }
     z-index: 999;                           /* 確保選單浮在其他內容上方 */
     gap: 4px;                               /* 每個選項之間的間距 */
   }
-
   /* 漢堡按鈕點擊後，nav 加上 open class → 選單展開顯示 */
   nav.open { display: flex; }
-
   /* 展開後每個選項撐滿全寬、文字置中 */
   nav a {
     width: 100%;                /* 撐滿選單寬度 */
@@ -1790,156 +1781,110 @@ footer p { font-size: 12px; color: var(--text-muted); }
     text-align: center;         /* 文字水平置中 */
     justify-content: center;    /* flex 子元素也置中 */
   }
-
   /* 漢堡按鈕在平板以下才顯示（桌機預設 display:none） */
   .hamburger { display: flex; }
-
   /* 英雄輪播高度改為視窗寬度的 72%，最小不低於 360px */
   .hero { height: 72vw; min-height: 360px; }
-
   /* 輪播內文字區塊最大寬度放寬，避免文字過早換行 */
   .slide-content { max-width: 88%; }
-
   /* 熱門精選：從 4 欄縮為 3 欄 */
   .hot-grid { grid-template-columns: repeat(3, 1fr); }
-
   /* 電影介紹：左右兩欄改為上下單欄排列 */
   .intro-layout { grid-template-columns: 1fr; }
-
   /* 電影介紹：海報圖片限制最大寬度並置中 */
   .intro-img { max-width: 260px; margin: 0 auto; }
-
   /* 關於我們 Hero 區塊高度縮小 */
   .about-hero { height: 360px; }
-
   /* 關於我們：團隊成員從 4 欄縮為 2 欄 */
   .team-grid { grid-template-columns: repeat(2, 1fr); }
-
   /* 關於我們：公司介紹從左右兩欄改為上下單欄 */
   .company-layout { grid-template-columns: 1fr; gap: 40px; }
-
   /* 關於我們：隱藏公司圖片後方的紅色裝飾邊框（小螢幕空間不足） */
   .company-img-col::before { display: none; }
-
   /* 關於我們：浮動成就標籤改為靠右內縮，避免超出畫面 */
   .company-badge { right: 16px; bottom: -14px; }
-
   /* 關於我們：背景浮水印大字縮小字體 */
   .company-section::after { font-size: 44px; }
-
   /* 登入/註冊頁：改為靠上對齊（內容較多時避免被切掉），加上頂部內距 */
   .auth-page { align-items: flex-start; padding-top: 24px; }
-
   /* 登入/註冊：卡片從左右兩欄改為單欄（圖片在上、表單在下） */
   .auth-card {
     grid-template-columns: 1fr;   /* 單欄排列 */
     max-width: 480px;              /* 限制最大寬度 */
     margin: 0 auto;                /* 置中 */
   }
-
   /* 登入/註冊：左側圖片區塊高度縮小 */
   .auth-image-col { min-height: 200px; }
-
   /* 登入/註冊：右側表單內距縮小 */
   .auth-form-col { padding: 28px 24px; }
-
   /* 登入/註冊：姓氏+姓名並排兩欄改為單欄 */
   .form-row { grid-template-columns: 1fr; gap: 0; }
-
   /* 登入/註冊：單欄後每個欄位補回下方間距 */
   .form-row .form-group { margin-bottom: 12px; }
-
   /* 頁尾：改為垂直排列並置中 */
   footer { flex-direction: column; align-items: center; text-align: center; }
-
   /* 頁尾連結：允許換行並置中對齊 */
   .footer-links { flex-wrap: wrap; justify-content: center; }
 }
-
 
 /* ── 手機版（480px 以下）── */
 @media (max-width: 480px) {
 
   /* 全域左右內距再縮小為 16px */
   :root { --padding-x: 16px; }
-
   /* 各區塊上下內距統一縮小 */
   .section { padding: 40px var(--padding-x); }
-
   /* 最新電影：卡片寬度略縮小 */
   .latest-card { width: 138px; }
-
   /* 最新電影：圖片容器同步縮小（維持 2:3 比例） */
   .latest-card-img-wrap { width: 138px; height: 207px; }
-
   /* 熱門精選：從 3 欄縮為 2 欄 */
   .hot-grid { grid-template-columns: repeat(2, 1fr); }
-
   /* 服務支援：維持 2 欄但間距縮小 */
   .help-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-
   /* 輪播標題字體縮小 */
   .slide-title { font-size: 22px; }
-
   /* 電影介紹標題字體縮小 */
   .intro-title { font-size: 22px; }
-
   /* 關於我們 Hero 高度再縮小 */
   .about-hero { height: 280px; }
-
   /* 關於我們 Hero 主標題字體縮小、字距縮小 */
   .about-hero-title { font-size: 38px; letter-spacing: 3px; }
-
   /* 關於我們：團隊和公司區塊上下內距縮小 */
   .team-section, .company-section { padding: 50px var(--padding-x); }
-
   /* 關於我們：團隊卡片維持 2 欄，間距縮小 */
   .team-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-
   /* 關於我們：公司數據統計欄間距縮小 */
   .company-stats { gap: 12px; }
-
   /* 關於我們：數字字體縮小 */
   .stat-num { font-size: 22px; }
-
   /* 登入/註冊頁：最外層內距再縮小（注意：此處 body .auth-page 寫法有誤，應改為 .auth-page） */
   body .auth-page { padding: 12px; }
-
   /* 登入/註冊：表單內距縮小 */
   .auth-form-col { padding: 24px 18px; }
-
   /* 登入/註冊：標題字體縮小 */
   .auth-form-title { font-size: 20px; }
-
   /* 登入/註冊：Google 和 Facebook 按鈕從兩欄改為單欄 */
   .social-btns { grid-template-columns: 1fr; }
-
   /* 頁尾連結：手機版隱藏，節省空間 */
   .footer-links { display: none; }
 }
-
 
 /* ── 最小手機（360px 以下）── */
 @media (max-width: 360px) {
 
   /* 全域左右內距縮到最小 12px */
   :root { --padding-x: 12px; }
-
   /* Logo 文字縮小、字距縮小，避免超出 header */
   .logo { font-size: 16px; letter-spacing: 1px; }
-
   /* 登入/註冊按鈕字體和內距縮小，避免超出 header */
   .btn-login, .btn-register { font-size: 12px; padding: 6px 12px; }
-
   /* 熱門精選：維持 2 欄 */
   .hot-grid { grid-template-columns: repeat(2, 1fr); }
-
   /* 服務支援：從 2 欄縮為單欄，最小螢幕空間嚴重不足 */
   .help-grid { grid-template-columns: 1fr; }
-
   /* 輪播標題字體再縮小 */
   .slide-title { font-size: 18px; }
-
   /* 關於我們 Hero 主標題字體再縮小、字距縮小 */
   .about-hero-title { font-size: 32px; letter-spacing: 2px; }
 }
