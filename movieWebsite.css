@@ -833,7 +833,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
 
 
 /* =====================================================
-   about home 區塊 css
+   about 區塊 css
    ===================================================== */
 .about-hero {
   margin-top: 70px;
@@ -1309,108 +1309,637 @@ footer p { font-size: 12px; color: var(--text-muted); }
 
 
 /* =====================================================
+  sign in, sign up  css
+  ===================================================== */
+.auth-page {
+  font-family: 'Noto Sans TC', sans-serif;
+  /* 整體背景：深棕紅色由左上至右下漸層 */
+  background: linear-gradient(
+    135deg,
+    #2a0d0d 0%,
+    #1e0a0a 20%,
+    #3d1a10 45%,
+    #2b1208 70%,
+    #1a0c06 100%
+  );
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 背景紋理：細微噪點感 */
+.auth-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(229,9,20,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(180,60,20,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =====================================================
+   主卡片容器
+   仿照參考圖：左右各半，整體圓角卡片
+   ===================================================== */
+.auth-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 960px;
+  min-height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* =====================================================
+   左側：圖片區塊
+   ===================================================== */
+.auth-image-col {
+  position: relative;
+  overflow: hidden;
+  min-height: 560px;
+}
+
+/* 左側底圖 */
+.auth-image-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.65);
+  display: block;
+}
+
+/* 左側頂部：返回網站連結 */
+.auth-back {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+.auth-back:hover {
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+}
+
+/* 左側 Logo */
+.auth-logo {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  z-index: 10;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 0 0 20px rgba(229,9,20,0.6);
+}
+.auth-logo span { color: var(--accent); }
+
+/* 左側底部文字 */
+.auth-image-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 60px 28px 32px;
+  background: linear-gradient(to top, rgba(26,14,6,0.9) 0%, transparent 100%);
+  z-index: 5;
+}
+.auth-image-text h2 {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.auth-image-text p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+
+/* 左側底部指示點 */
+.auth-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+}
+.auth-dot {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.35);
+}
+.auth-dot.active {
+  background: #fff;
+  width: 24px;
+}
+.auth-dot:not(.active) { width: 14px; }
+
+
+/* =====================================================
+   右側：登入 / 註冊表單區塊
+   深黑帶透明感底色
+   ===================================================== */
+.auth-form-col {
+  background: rgba(18, 12, 8, 0.96);
+  backdrop-filter: blur(20px);
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* 右側頂部分頁 Tab（登入 / 註冊） */
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.auth-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.3s;
+  user-select: none;
+}
+.auth-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+.auth-tab:hover:not(.active) {
+  color: var(--text-secondary);
+}
+
+/* 標題 */
+.auth-form-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* 副標 */
+.auth-form-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.auth-form-sub a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.auth-form-sub a:hover { text-decoration: underline; }
+
+/* 表單面板（登入 / 註冊切換顯示） */
+.form-panel { display: none; }
+.form-panel.active { display: block; }
+
+/* 輸入欄位組（兩欄並排用） */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* 單一輸入欄位組 */
+.form-group {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+/* 輸入框 label */
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* 輸入框本體 */
+.form-group input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.form-group input::placeholder {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.form-group input:focus {
+  border-color: rgba(229,9,20,0.5);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(229,9,20,0.1);
+}
+
+/* 密碼欄位右側眼睛 icon */
+.input-icon-wrap {
+  position: relative;
+}
+.input-icon-wrap input {
+  padding-right: 40px;
+}
+.input-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+.input-eye:hover { color: var(--text-secondary); }
+
+/* 條款同意 checkbox 行 */
+.form-agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.form-agree input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  margin-top: 1px;
+}
+.form-agree label {
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1.5;
+}
+.form-agree label a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.form-agree label a:hover { text-decoration: underline; }
+
+/* 忘記密碼連結（登入頁專用） */
+.form-forgot {
+  text-align: right;
+  margin-top: -6px;
+  margin-bottom: 18px;
+}
+.form-forgot a {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.form-forgot a:hover { color: var(--accent); }
+
+/* 主要按鈕（登入 / 建立帳號） */
+.btn-primary {
+  width: 100%;
+  padding: 13px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+  margin-bottom: 18px;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(229,9,20,0.4);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* 分隔線「Or register with」 */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.auth-divider span {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* 社群登入按鈕群組 */
+.social-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* 社群按鈕通用樣式 */
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-social:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+
+/* Google 按鈕 icon */
+.btn-google .google-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Facebook 按鈕 icon */
+.btn-facebook i {
+  color: #1877f2;
+  font-size: 16px;
+}
+
+/* =====================================================
    RWD 響應式切版規則
    桌機：1440px / 平板：768px / 手機：360px
    ===================================================== */
 
 /* ── 中型平板（1024px 以下）── */
 @media (max-width: 1024px) {
-  /* 熱門精選：6 欄 → 4 欄 */
+
+  /* 熱門精選：螢幕縮小後從 6 欄改為 4 欄排列 */
   .hot-grid { grid-template-columns: repeat(4, 1fr); }
-  /* 電影介紹左欄縮小 */
+
+  /* 電影介紹：左側海報欄寬從 300px 縮為 240px，間距也縮小 */
   .intro-layout { grid-template-columns: 240px 1fr; gap: 24px; }
 
+  /* 關於我們：團隊成員維持 4 欄，但卡片間距縮小 */
   .team-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* 關於我們：公司介紹左右兩欄之間的間距縮小 */
   .company-layout { gap: 40px; }
+
+  /* 關於我們：公司圖片右下角浮動標籤往內縮，避免超出邊界 */
   .company-badge { right: -10px; bottom: -10px; }
 
-  /* 服務支援：4 欄 → 2 欄 */
+  /* 服務支援中心：從 4 欄縮為 2 欄排列 */
   .help-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+
 /* ── 平板版（768px 以下）── */
 @media (max-width: 768px) {
+
+  /* 全域左右內距縮小為 20px */
   :root { --padding-x: 20px; }
 
-  /* 導覽選單：收起，點漢堡展開，選項居中 */
+  /* 導覽選單：預設隱藏，點漢堡按鈕後展開 */
   nav {
-    display: none;
-    position: fixed;
-    top: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: var(--max-width);
-    flex-direction: column;
-    align-items: center;   /* 選單展開後文字居中 */
-    background: rgba(26,20,16,0.98);
-    padding: 16px var(--padding-x);
-    border-bottom: 1px solid var(--border);
-    z-index: 999;
-    gap: 4px;
-  }
-  nav.open { display: flex; }
-  nav a {
-    width: 100%;
-    padding: 12px 16px;
-    text-align: center;   /* 選單文字置中 */
-    justify-content: center;
+    display: none;                          /* 預設隱藏 */
+    position: fixed;                        /* 固定在視窗，不隨頁面滾動 */
+    top: 70px;                              /* 緊接在 header 下方 */
+    left: 50%;                              /* 水平置中起始點 */
+    transform: translateX(-50%);            /* 搭配 left:50% 實現真正置中 */
+    width: 100%;                            /* 撐滿全寬 */
+    max-width: var(--max-width);            /* 最大不超過 1440px */
+    flex-direction: column;                 /* 選項改為垂直排列 */
+    align-items: center;                    /* 選項文字水平置中 */
+    background: rgba(26,20,16,0.98);        /* 深棕色半透明背景 */
+    padding: 16px var(--padding-x);         /* 上下內距 16px，左右套用全域變數 */
+    border-bottom: 1px solid var(--border); /* 底部加一條分隔線 */
+    z-index: 999;                           /* 確保選單浮在其他內容上方 */
+    gap: 4px;                               /* 每個選項之間的間距 */
   }
 
-  /* 漢堡按鈕顯示 */
+  /* 漢堡按鈕點擊後，nav 加上 open class → 選單展開顯示 */
+  nav.open { display: flex; }
+
+  /* 展開後每個選項撐滿全寬、文字置中 */
+  nav a {
+    width: 100%;                /* 撐滿選單寬度 */
+    padding: 12px 16px;         /* 上下增加點擊範圍 */
+    text-align: center;         /* 文字水平置中 */
+    justify-content: center;    /* flex 子元素也置中 */
+  }
+
+  /* 漢堡按鈕在平板以下才顯示（桌機預設 display:none） */
   .hamburger { display: flex; }
 
-  /* 英雄輪播高度調整 */
+  /* 英雄輪播高度改為視窗寬度的 72%，最小不低於 360px */
   .hero { height: 72vw; min-height: 360px; }
+
+  /* 輪播內文字區塊最大寬度放寬，避免文字過早換行 */
   .slide-content { max-width: 88%; }
 
-  /* 熱門精選：4 欄 → 3 欄 */
+  /* 熱門精選：從 4 欄縮為 3 欄 */
   .hot-grid { grid-template-columns: repeat(3, 1fr); }
 
-  /* 電影介紹：左右兩欄 → 上下單欄 */
+  /* 電影介紹：左右兩欄改為上下單欄排列 */
   .intro-layout { grid-template-columns: 1fr; }
+
+  /* 電影介紹：海報圖片限制最大寬度並置中 */
   .intro-img { max-width: 260px; margin: 0 auto; }
 
-    .about-hero { height: 360px; }
+  /* 關於我們 Hero 區塊高度縮小 */
+  .about-hero { height: 360px; }
 
-  /* 團隊：4欄 → 2欄 */
+  /* 關於我們：團隊成員從 4 欄縮為 2 欄 */
   .team-grid { grid-template-columns: repeat(2, 1fr); }
 
-  /* 公司：兩欄 → 單欄 */
+  /* 關於我們：公司介紹從左右兩欄改為上下單欄 */
   .company-layout { grid-template-columns: 1fr; gap: 40px; }
+
+  /* 關於我們：隱藏公司圖片後方的紅色裝飾邊框（小螢幕空間不足） */
   .company-img-col::before { display: none; }
+
+  /* 關於我們：浮動成就標籤改為靠右內縮，避免超出畫面 */
   .company-badge { right: 16px; bottom: -14px; }
+
+  /* 關於我們：背景浮水印大字縮小字體 */
   .company-section::after { font-size: 44px; }
 
-  /* 頁尾垂直排列 */
+  /* 登入/註冊頁：改為靠上對齊（內容較多時避免被切掉），加上頂部內距 */
+  .auth-page { align-items: flex-start; padding-top: 24px; }
+
+  /* 登入/註冊：卡片從左右兩欄改為單欄（圖片在上、表單在下） */
+  .auth-card {
+    grid-template-columns: 1fr;   /* 單欄排列 */
+    max-width: 480px;              /* 限制最大寬度 */
+    margin: 0 auto;                /* 置中 */
+  }
+
+  /* 登入/註冊：左側圖片區塊高度縮小 */
+  .auth-image-col { min-height: 200px; }
+
+  /* 登入/註冊：右側表單內距縮小 */
+  .auth-form-col { padding: 28px 24px; }
+
+  /* 登入/註冊：姓氏+姓名並排兩欄改為單欄 */
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+
+  /* 登入/註冊：單欄後每個欄位補回下方間距 */
+  .form-row .form-group { margin-bottom: 12px; }
+
+  /* 頁尾：改為垂直排列並置中 */
   footer { flex-direction: column; align-items: center; text-align: center; }
+
+  /* 頁尾連結：允許換行並置中對齊 */
   .footer-links { flex-wrap: wrap; justify-content: center; }
 }
 
+
 /* ── 手機版（480px 以下）── */
 @media (max-width: 480px) {
+
+  /* 全域左右內距再縮小為 16px */
   :root { --padding-x: 16px; }
+
+  /* 各區塊上下內距統一縮小 */
   .section { padding: 40px var(--padding-x); }
 
-  /* 最新電影卡片略縮小 */
+  /* 最新電影：卡片寬度略縮小 */
   .latest-card { width: 138px; }
+
+  /* 最新電影：圖片容器同步縮小（維持 2:3 比例） */
   .latest-card-img-wrap { width: 138px; height: 207px; }
 
-  /* 熱門精選：3 欄 → 2 欄 */
+  /* 熱門精選：從 3 欄縮為 2 欄 */
   .hot-grid { grid-template-columns: repeat(2, 1fr); }
 
-  /* 服務支援：2 欄 */
+  /* 服務支援：維持 2 欄但間距縮小 */
   .help-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
+  /* 輪播標題字體縮小 */
   .slide-title { font-size: 22px; }
+
+  /* 電影介紹標題字體縮小 */
   .intro-title { font-size: 22px; }
 
+  /* 關於我們 Hero 高度再縮小 */
   .about-hero { height: 280px; }
+
+  /* 關於我們 Hero 主標題字體縮小、字距縮小 */
   .about-hero-title { font-size: 38px; letter-spacing: 3px; }
+
+  /* 關於我們：團隊和公司區塊上下內距縮小 */
   .team-section, .company-section { padding: 50px var(--padding-x); }
+
+  /* 關於我們：團隊卡片維持 2 欄，間距縮小 */
   .team-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  /* 關於我們：公司數據統計欄間距縮小 */
   .company-stats { gap: 12px; }
+
+  /* 關於我們：數字字體縮小 */
   .stat-num { font-size: 22px; }
 
+  /* 登入/註冊頁：最外層內距再縮小（注意：此處 body .auth-page 寫法有誤，應改為 .auth-page） */
+  body .auth-page { padding: 12px; }
+
+  /* 登入/註冊：表單內距縮小 */
+  .auth-form-col { padding: 24px 18px; }
+
+  /* 登入/註冊：標題字體縮小 */
+  .auth-form-title { font-size: 20px; }
+
+  /* 登入/註冊：Google 和 Facebook 按鈕從兩欄改為單欄 */
+  .social-btns { grid-template-columns: 1fr; }
+
+  /* 頁尾連結：手機版隱藏，節省空間 */
   .footer-links { display: none; }
+}
+
+
+/* ── 最小手機（360px 以下）── */
+@media (max-width: 360px) {
+
+  /* 全域左右內距縮到最小 12px */
+  :root { --padding-x: 12px; }
+
+  /* Logo 文字縮小、字距縮小，避免超出 header */
+  .logo { font-size: 16px; letter-spacing: 1px; }
+
+  /* 登入/註冊按鈕字體和內距縮小，避免超出 header */
+  .btn-login, .btn-register { font-size: 12px; padding: 6px 12px; }
+
+  /* 熱門精選：維持 2 欄 */
+  .hot-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* 服務支援：從 2 欄縮為單欄，最小螢幕空間嚴重不足 */
+  .help-grid { grid-template-columns: 1fr; }
+
+  /* 輪播標題字體再縮小 */
+  .slide-title { font-size: 18px; }
+
+  /* 關於我們 Hero 主標題字體再縮小、字距縮小 */
+  .about-hero-title { font-size: 32px; letter-spacing: 2px; }
 }

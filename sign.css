@@ -21,7 +21,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; }
 
-body {
+.auth-page {
   font-family: 'Noto Sans TC', sans-serif;
   /* 整體背景：深棕紅色由左上至右下漸層 */
   background: linear-gradient(
@@ -42,7 +42,7 @@ body {
 }
 
 /* 背景紋理：細微噪點感 */
-body::before {
+.auth-page::before {
   content: '';
   position: fixed;
   inset: 0;
