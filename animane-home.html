@@ -193,7 +193,7 @@
   <div class="section-header">
     <h2 class="section-title">更多動漫</h2>
     <!-- More 連結：靠右，點擊可導向更多動漫頁面 -->
-    <a href="#" class="more-link">More <i class="fas fa-chevron-right"></i></a>
+    <a href="more-movies.html" class="more-link">More <i class="fas fa-chevron-right"></i></a>
   </div>
   <!-- 更多動漫 6 欄網格（與熱門精選共用 .hot-grid / .hot-card 樣式） -->
   <div class="hot-grid" id="more-grid">
@@ -309,3 +309,193 @@
 
 </body>
 </html>
+
+<script>
+
+/* -------- 最新電影-資料js -------- */
+function renderLatestGrid(movies) {
+  const grid = document.getElementById('latest-grid');
+  if (!grid || !movies) return;
+
+  const html = movies.map(movie => `
+      <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <a href="${movie.link}">
+            <img class="latest-card-img" src="${movie.img}" alt="${movie.title}">
+          </a>
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">${movie.title}</div>
+          <div class="latest-card-meta">
+            <i class="fas fa-star star"></i>${movie.rating}&nbsp;
+            <i class="fas fa-clock"></i>${movie.duration}
+          </div>
+        </div>
+      </div>
+  `).join('');
+
+  grid.style.opacity = '0';
+  grid.style.transition = 'opacity 0.3s ease';
+
+  setTimeout(() => {
+    grid.innerHTML = html;
+    grid.style.opacity = '1';
+  }, 300);
+}
+
+function switchLatestCategory(category, btn) {
+  // 1. 處理按鈕的高亮狀態 (Active)
+  const buttons = document.querySelectorAll('#latest-menu .filter-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // 2. 根據分類抓取資料並重新渲染
+  const selectedData = animaneLatest[category];
+  if (selectedData) {
+    renderLatestGrid(selectedData);
+  }
+}
+
+
+/* -------- 熱門精選-資料js -------- */
+function renderHotGrid(movies) {
+  const grid = document.getElementById('hot-grid');
+  if (!grid || !movies) return;
+
+  const html = movies.map(movie => `
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="${movie.img}" alt="${movie.title}">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">${movie.title}</div>
+        <div class="hot-card-meta">
+          <i class="fas fa-star star"></i>${movie.rating}&nbsp;
+          <i class="fas fa-clock"></i>${movie.duration}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // 2. 執行切換動畫：先淡出
+  grid.style.opacity = '0';
+  grid.style.transition = 'opacity 0.3s ease';
+
+  // 3. 替換內容後再淡入
+  setTimeout(() => {
+    grid.innerHTML = html;
+    grid.style.opacity = '1';
+  }, 300);
+}
+
+/**
+ * 分類按鈕切換
+ */
+function switchHotCategory(category, btn) {
+  // 1. 處理按鈕的高亮狀態 (Active)
+  const buttons = document.querySelectorAll('#hot-menu .filter-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // 2. 根據分類抓取資料並重新渲染
+  const selectedData = animaneHot[category];
+  if (selectedData) {
+    renderHotGrid(selectedData);
+  }
+}
+
+
+/* -------- 更多電影-資料js -------- */
+function renderMoreGrid(movies){
+  const grid = document.getElementById('more-grid');
+  if (!grid || !movies) return;
+
+  const html = movies.map(movie => `
+    <div class="hot-card">
+      <div class="hot-card-img-wrap">
+        <img class="hot-card-img" src="${movie.img}" alt="${movie.title}">
+      </div>
+      <div class="hot-card-info">
+        <div class="hot-card-title">${movie.title}</div>
+        <div class="hot-card-meta">
+          <i class="fas fa-star star"></i>${movie.rating}&nbsp;
+          <i class="fas fa-clock"></i>${movie.duration}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  grid.innerHTML = html;
+}
+
+
+/* -------- 電影介紹-資料js -------- */
+function renderIntroGrid(movies) {
+  const grid = document.getElementById('intro-grid');
+  if (!grid || !movies) return;
+
+  const html = movies.map(movie => `
+    <div class="intro-layout">
+        <img class="intro-img" src="${movie.img}" alt="${movie.title}">
+      <div class="intro-text">
+        <div class="intro-title">${movie.title}</div>
+          <div class="intro-meta">
+            <div class="intro-meta-item">
+              <i class="fas fa-star"></i> ${movie.rating} &nbsp; /10
+            </div>
+            <div class="intro-meta-item">
+              <i class="fas fa-clock"></i> ${movie.duration}
+            </div>
+            <div class="intro-meta-item">
+              <i class="fas fa-video"></i> ${movie.director}
+            </div>
+            <div class="intro-meta-item">
+              <i class="fas fa-calendar"></i> ${movie.year}年
+            </div>
+          </div>
+
+            <div class="intro-tags">
+            ${movie.tags.map(tags => `<span class="intro-tag">${tags}</span>`).join('')}
+            </div>
+
+            <p class="intro-desc">${movie.desc1}</p>
+            <p class="intro-desc">${movie.desc2}</p>
+
+            <a href="#" class="btn-watch"><i class="fas fa-play"></i>立即觀看</a>
+      </div>
+    </div>
+  `).join('');  
+
+  // 2. 執行切換動畫：先淡出
+  grid.style.opacity = '0';
+  grid.style.transition = 'opacity 0.3s ease';
+
+  // 3. 替換內容後再淡入
+  setTimeout(() => {
+    grid.innerHTML = html;
+    grid.style.opacity = '1';
+  }, 300);
+}
+
+function switchIntroCategory(category, btn) {
+  // 1. 處理按鈕的高亮狀態 (Active)
+  const buttons = document.querySelectorAll('#intro-menu .filter-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // 2. 根據分類抓取資料並重新渲染
+  const selectedData = animaneIntro[category];
+  if (selectedData) {
+    renderIntroGrid(selectedData);
+  }
+}
+
+
+// 頁面初次載入時，預設顯示「浪漫」
+document.addEventListener('DOMContentLoaded', () => {
+  switchHotCategory('浪漫', document.querySelector('#hot-menu .filter-btn:first-child'));
+  switchLatestCategory('浪漫', document.querySelector('#latest-menu .filter-btn:first-child'));
+  renderMoreGrid(animaneMore);
+  switchIntroCategory('浪漫', document.querySelector('#intro-menu .filter-btn:first-child'));
+});
+</script>

@@ -1308,6 +1308,8 @@ footer p { font-size: 12px; color: var(--text-muted); }
 }
 
 
+
+
 /* =====================================================
   sign in, sign up  css
   ===================================================== */
@@ -1728,6 +1730,493 @@ footer p { font-size: 12px; color: var(--text-muted); }
   font-size: 16px;
 }
 
+
+/* =====================================================
+  more movie  css
+  ===================================================== */
+/* =====================================================
+   ▌頁面頂部：標題列（麵包屑 + 頁面標題）
+   ===================================================== */
+.page-hero {
+  margin-top: 70px;                      /* 避免被固定 header 遮住（header 高度 70px） */
+  padding: 32px var(--padding-x) 24px;   /* 上 32px、左右套用變數、下 24px */
+  background: var(--bg-section);         /* 深棕色背景 */
+  border-bottom: 1px solid var(--border); /* 底部分隔線 */
+  position: relative;                    /* 建立定位上下文，讓偽元素能絕對定位 */
+  overflow: hidden;                      /* 裁切超出的裝飾元素 */
+}
+
+.page-hero::before {
+  content: '';                           /* 偽元素必須有 content 才能顯示 */
+  position: absolute;                    /* 絕對定位，相對於 .page-hero */
+  left: 0;                               /* 靠左 */
+  top: 0;                                /* 靠頂 */
+  width: 4px;                            /* 寬度 4px（左側紅色豎線） */
+  height: 100%;                          /* 撐滿高度 */
+  background: var(--accent);             /* 紅色 */
+}
+
+.page-hero::after {
+  content: 'MORE';                       /* 背景裝飾大字 */
+  position: absolute;                    /* 絕對定位 */
+  right: var(--padding-x);              /* 靠右，保持左右內距 */
+  top: 50%;                              /* 垂直置中起始點 */
+  transform: translateY(-50%);           /* 配合 top:50% 真正垂直置中 */
+  font-size: 100px;                      /* 超大字體 */
+  font-weight: 900;                      /* 最粗字重 */
+  color: rgba(229,9,20,0.05);            /* 極淡紅色（幾乎透明的裝飾） */
+  letter-spacing: 8px;                   /* 字距加寬 */
+  pointer-events: none;                  /* 不影響滑鼠事件 */
+}
+
+/* ── 麵包屑導覽列（首頁 > 更多電影） ── */
+.breadcrumb {
+  display: flex;                         /* 水平排列 */
+  align-items: center;                   /* 垂直置中 */
+  gap: 8px;                              /* 項目間距 */
+  font-size: 13px;                       /* 小字體 */
+  color: var(--text-muted);             /* 淡灰色 */
+  margin-bottom: 10px;                   /* 與標題的間距 */
+}
+.breadcrumb a {
+  color: var(--text-muted);             /* 連結淡灰色 */
+  text-decoration: none;                 /* 移除底線 */
+  transition: color 0.3s;               /* 顏色過渡 */
+}
+.breadcrumb a:hover {
+  color: var(--accent);                  /* hover：變紅 */
+}
+.breadcrumb i {
+  font-size: 10px;                       /* 箭頭 icon 縮小 */
+}
+
+/* ── 頁面主標題 ── */
+.page-hero h1 {
+  font-size: 32px;                       /* 標題字體大小 */
+  font-weight: 900;                      /* 最粗字重 */
+  color: var(--text-primary);            /* 白色文字 */
+  letter-spacing: 1px;                   /* 輕微字距 */
+}
+.page-hero h1 span {
+  color: var(--accent);                  /* 「電影」兩字變紅 */
+}
+
+/* ── 頁面副標題 ── */
+.page-hero-sub {
+  font-size: 14px;                       /* 小字體 */
+  color: var(--text-muted);             /* 淡灰色 */
+  margin-top: 6px;                       /* 與主標題的間距 */
+}
+
+/* =====================================================
+   ▌主內容區：左側類別欄 + 右側電影網格
+     使用 grid 兩欄排版
+   ===================================================== */
+.main-content {
+  display: grid;                         /* CSS Grid 排版 */
+  grid-template-columns: 220px 1fr;      /* 左欄固定 220px，右欄佔剩餘空間 */
+  gap: 0;                                /* 兩欄無間距（用 padding 控制） */
+  padding: 32px var(--padding-x) 40px;   /* 上 32px、左右套用變數、下 40px */
+  align-items: start;                    /* 左右欄靠頂對齊 */
+}
+
+/* =====================================================
+   ▌左側：類別側欄
+   ===================================================== */
+.sidebar {
+  position: sticky;                      /* 黏性定位，隨頁面捲動但不超過 top 值 */
+  top: 90px;                             /* 距頂部 90px（header 70px + 間距） */
+  padding-right: 24px;                   /* 與右側電影網格的間距 */
+}
+
+/* ── 側欄區塊標題（「電影類別」小標籤） ── */
+.sidebar-title {
+  font-size: 12px;                       /* 小字體 */
+  font-weight: 700;                      /* 粗體 */
+  color: var(--text-muted);             /* 淡灰色 */
+  letter-spacing: 2px;                   /* 字距加寬 */
+  text-transform: uppercase;             /* 強制大寫 */
+  margin-bottom: 16px;                   /* 與類別按鈕的間距 */
+  padding-bottom: 10px;                  /* 與底部分隔線的距離 */
+  border-bottom: 1px solid var(--border); /* 底部分隔線 */
+}
+
+/* ── 類別按鈕列表容器 ── */
+.category-list {
+  display: flex;                         /* flex 排列 */
+  flex-direction: column;                /* 垂直排列（每個類別一行） */
+  gap: 4px;                              /* 按鈕間距 */
+}
+
+/* ── 單一類別按鈕 ── */
+.cat-btn {
+  display: flex;                         /* 水平排列 icon + 文字 + 數量 */
+  align-items: center;                   /* 垂直置中 */
+  gap: 12px;                             /* icon 與文字間距 */
+  padding: 12px 14px;                    /* 按鈕內距 */
+  border-radius: 8px;                    /* 圓角 */
+  background: transparent;              /* 預設透明背景 */
+  border: 1px solid transparent;         /* 預設透明邊框（佔位，hover 才顯示） */
+  color: var(--text-secondary);          /* 預設灰色文字 */
+  font-family: 'Noto Sans TC', sans-serif; /* 字體 */
+  font-size: 14px;                       /* 字體大小 */
+  font-weight: 500;                      /* 字重 */
+  cursor: pointer;                       /* 滑鼠變指針 */
+  transition: all 0.3s;                  /* 所有屬性過渡 */
+  text-align: left;                      /* 文字靠左 */
+  width: 100%;                           /* 撐滿側欄寬度 */
+}
+.cat-btn:hover {
+  background: rgba(229,9,20,0.08);       /* hover：淡紅色背景 */
+  color: var(--text-primary);            /* hover：文字變白 */
+  border-color: rgba(229,9,20,0.2);      /* hover：淡紅色邊框 */
+}
+.cat-btn.active {
+  background: rgba(229,9,20,0.12);       /* active：稍深的紅色背景 */
+  color: var(--text-primary);            /* active：白色文字 */
+  border-color: rgba(229,9,20,0.35);     /* active：較明顯紅色邊框 */
+}
+.cat-btn.active .cat-icon {
+  color: var(--accent);                  /* active 時 icon 變紅 */
+}
+
+/* ── 類別 icon 小方塊 ── */
+.cat-icon {
+  width: 28px;                           /* 固定寬度 */
+  height: 28px;                          /* 固定高度 */
+  display: flex;                         /* 讓 icon 在方塊內置中 */
+  align-items: center;                   /* 垂直置中 */
+  justify-content: center;              /* 水平置中 */
+  border-radius: 6px;                    /* 圓角 */
+  background: rgba(255,255,255,0.05);    /* 半透明白色背景 */
+  font-size: 13px;                       /* icon 大小 */
+  color: var(--text-muted);             /* 預設淡灰色 */
+  transition: all 0.3s;                  /* 顏色過渡 */
+  flex-shrink: 0;                        /* 不縮小 */
+}
+
+/* ── 類別影片數量標籤 ── */
+.cat-count {
+  margin-left: auto;                     /* 推到最右側 */
+  font-size: 11px;                       /* 小字 */
+  color: var(--text-muted);             /* 淡灰色 */
+  background: rgba(255,255,255,0.05);    /* 半透明背景 */
+  padding: 2px 8px;                      /* 內距 */
+  border-radius: 10px;                   /* 膠囊形狀 */
+}
+.cat-btn.active .cat-count {
+  background: rgba(229,9,20,0.2);        /* active：淡紅色背景 */
+  color: var(--accent);                  /* active：紅色數字 */
+}
+
+/* ── 側欄底部篩選區 ── */
+.sidebar-filter {
+  margin-top: 24px;                      /* 與類別列表的間距 */
+  padding-top: 20px;                     /* 內距 */
+  border-top: 1px solid var(--border);   /* 頂部分隔線 */
+}
+.sidebar-filter-title {
+  font-size: 12px;                       /* 小字體 */
+  font-weight: 700;                      /* 粗體 */
+  color: var(--text-muted);             /* 淡灰色 */
+  letter-spacing: 2px;                   /* 字距 */
+  text-transform: uppercase;             /* 大寫 */
+  margin-bottom: 12px;                   /* 與選項的間距 */
+}
+.filter-option {
+  display: flex;                         /* 水平排列 radio + 文字 */
+  align-items: center;                   /* 垂直置中 */
+  gap: 8px;                              /* 間距 */
+  padding: 8px 0;                        /* 上下內距，增加點擊範圍 */
+  font-size: 13px;                       /* 字體大小 */
+  color: var(--text-secondary);          /* 灰色文字 */
+  cursor: pointer;                       /* 整列可點擊 */
+  transition: color 0.3s;               /* 顏色過渡 */
+}
+.filter-option:hover {
+  color: var(--text-primary);            /* hover：文字變白 */
+}
+.filter-option input[type="radio"] {
+  accent-color: var(--accent);           /* radio 選中時的紅色 */
+  width: 14px;                           /* radio 大小 */
+  height: 14px;                          /* radio 大小 */
+}
+
+/* =====================================================
+   ▌右側：電影網格區塊
+   ===================================================== */
+.movies-area {
+  min-width: 0;                          /* 防止 grid 子元素超出父容器 */
+}
+
+/* ── 右側頂部工具列（結果數量 + 排序） ── */
+.movies-toolbar {
+  display: flex;                         /* 水平排列 */
+  align-items: center;                   /* 垂直置中 */
+  justify-content: space-between;        /* 左右對齊 */
+  margin-bottom: 20px;                   /* 與網格的間距 */
+  padding-bottom: 16px;                  /* 內距 */
+  border-bottom: 1px solid var(--border); /* 底部分隔線 */
+}
+.movies-count {
+  font-size: 14px;                       /* 字體大小 */
+  color: var(--text-muted);             /* 淡灰色 */
+}
+.movies-count span {
+  color: var(--text-primary);            /* 數字白色強調 */
+  font-weight: 700;                      /* 粗體 */
+}
+.movies-sort {
+  display: flex;                         /* 水平排列 icon + select */
+  align-items: center;                   /* 垂直置中 */
+  gap: 8px;                              /* 間距 */
+  font-size: 13px;                       /* 字體大小 */
+  color: var(--text-muted);             /* 淡灰色 */
+}
+.movies-sort select {
+  background: var(--bg-card);            /* 深色背景 */
+  border: 1px solid var(--border);       /* 邊框 */
+  color: var(--text-secondary);          /* 灰色文字 */
+  font-family: 'Noto Sans TC', sans-serif; /* 字體 */
+  font-size: 13px;                       /* 字體大小 */
+  padding: 6px 10px;                     /* 內距 */
+  border-radius: 6px;                    /* 圓角 */
+  outline: none;                         /* 移除 focus 外框 */
+  cursor: pointer;                       /* 滑鼠變指針 */
+}
+
+/* ── 3×3 電影卡片網格 ── */
+.movies-grid {
+  display: grid;                         /* CSS Grid 排版 */
+  grid-template-columns: repeat(3, 1fr); /* 三欄等寬 */
+  gap: 20px;                             /* 卡片間距 */
+  margin-bottom: 32px;                   /* 與分頁按鈕的間距 */
+}
+
+/* ── 單張電影卡片 ── */
+.movie-card {
+  background: var(--bg-card);            /* 深色卡片背景 */
+  border: 1px solid var(--border);       /* 邊框 */
+  border-radius: 10px;                   /* 圓角 */
+  overflow: hidden;                      /* 裁切超出圓角的內容 */
+  cursor: pointer;                       /* 滑鼠變指針 */
+  transition: transform 0.35s ease,      /* 上浮動畫 */
+              border-color 0.35s ease,   /* 邊框顏色過渡 */
+              box-shadow 0.35s ease;     /* 陰影過渡 */
+}
+.movie-card:hover {
+  transform: translateY(-6px);           /* hover：卡片上浮 6px */
+  border-color: rgba(229,9,20,0.45);     /* hover：紅色邊框 */
+  box-shadow: 0 12px 36px rgba(229,9,20,0.15), /* hover：紅色光暈陰影 */
+              0 4px 16px rgba(0,0,0,0.4); /* hover：黑色深度陰影 */
+}
+
+/* ── 電影卡片圖片容器 ── */
+.movie-card-img-wrap {
+  width: 100%;                           /* 撐滿卡片寬度 */
+  aspect-ratio: 2 / 3;                   /* 固定 2:3 直式比例（電影海報標準） */
+  overflow: hidden;                      /* 裁切 zoom 後超出的圖片 */
+  position: relative;                    /* 建立定位上下文，讓子元素絕對定位 */
+}
+.movie-card-img-wrap::after {
+  content: '';                           /* 偽元素：紅色漸層遮罩 */
+  position: absolute;                    /* 覆蓋整個圖片區域 */
+  inset: 0;                              /* 等同 top/right/bottom/left: 0 */
+  background: linear-gradient(           /* 由下往上的紅色漸層 */
+    to top,
+    rgba(229,9,20,0.2) 0%,              /* 底部 20% 透明紅 */
+    transparent 50%                      /* 上半部完全透明 */
+  );
+  opacity: 0;                            /* 預設隱藏 */
+  transition: opacity 0.35s;             /* 淡入過渡 */
+}
+.movie-card:hover .movie-card-img-wrap::after {
+  opacity: 1;                            /* hover：遮罩淡入 */
+}
+
+/* ── hover 時顯示的播放按鈕 ── */
+.movie-card-play {
+  position: absolute;                    /* 絕對定位，覆蓋在圖片上方 */
+  inset: 0;                              /* 撐滿圖片區域 */
+  display: flex;                         /* flex 讓 icon 置中 */
+  align-items: center;                   /* 垂直置中 */
+  justify-content: center;              /* 水平置中 */
+  opacity: 0;                            /* 預設隱藏 */
+  transition: opacity 0.35s;             /* 淡入過渡 */
+  z-index: 2;                            /* 在遮罩上方 */
+}
+.movie-card:hover .movie-card-play {
+  opacity: 1;                            /* hover：播放鍵淡入 */
+}
+.movie-card-play i {
+  width: 48px;                           /* 播放鍵圓形寬度 */
+  height: 48px;                          /* 播放鍵圓形高度 */
+  background: rgba(229,9,20,0.85);       /* 紅色半透明背景 */
+  border-radius: 50%;                    /* 正圓形 */
+  display: flex;                         /* 讓 icon 置中 */
+  align-items: center;                   /* 垂直置中 */
+  justify-content: center;              /* 水平置中 */
+  font-size: 18px;                       /* icon 大小 */
+  color: #fff;                           /* 白色播放箭頭 */
+  backdrop-filter: blur(4px);            /* 毛玻璃效果 */
+}
+
+/* ── 電影卡片圖片本體 ── */
+.movie-card-img {
+  width: 100%;                           /* 撐滿容器 */
+  height: 100%;                          /* 撐滿容器 */
+  object-fit: cover;                     /* 裁切填滿，不變形 */
+  display: block;                        /* 移除圖片預設的行內間距 */
+  transition: transform 0.35s ease;      /* 縮放過渡 */
+}
+.movie-card:hover .movie-card-img {
+  transform: scale(1.05);                /* hover：圖片微微放大 */
+}
+
+/* ── 電影卡片文字資訊區 ── */
+.movie-card-info {
+  padding: 14px 14px 16px;              /* 內距 */
+}
+.movie-card-title {
+  font-size: 14px;                       /* 標題字體大小 */
+  font-weight: 700;                      /* 粗體 */
+  color: var(--text-primary);            /* 白色 */
+  margin-bottom: 6px;                    /* 與 meta 的間距 */
+  white-space: nowrap;                   /* 不換行 */
+  overflow: hidden;                      /* 超出隱藏 */
+  text-overflow: ellipsis;               /* 超出顯示 ... */
+}
+.movie-card-meta {
+  display: flex;                         /* 水平排列評分 + 時長 */
+  align-items: center;                   /* 垂直置中 */
+  gap: 12px;                             /* 間距 */
+  font-size: 12px;                       /* 小字體 */
+  color: var(--text-muted);             /* 淡灰色 */
+}
+.movie-card-meta .star {
+  color: var(--gold);                    /* 星星金色 */
+}
+
+/* ── 電影類型標籤 ── */
+.movie-card-tag {
+  display: inline-block;                 /* 行內塊，讓寬度自適應文字 */
+  font-size: 10px;                       /* 超小字體 */
+  padding: 2px 8px;                      /* 內距 */
+  background: rgba(229,9,20,0.1);        /* 淡紅色背景 */
+  border: 1px solid rgba(229,9,20,0.2);  /* 淡紅色邊框 */
+  border-radius: 3px;                    /* 小圓角 */
+  color: var(--accent);                  /* 紅色文字 */
+  margin-top: 8px;                       /* 與 meta 的間距 */
+}
+
+/* =====================================================
+   ▌分頁按鈕
+   ===================================================== */
+.pagination {
+  display: flex;                         /* 水平排列分頁按鈕 */
+  align-items: center;                   /* 垂直置中 */
+  justify-content: center;              /* 整體水平置中 */
+  gap: 8px;                              /* 按鈕間距 */
+  margin-bottom: 40px;                   /* 與下方區塊的間距 */
+}
+.page-btn {
+  width: 36px;                           /* 按鈕寬度 */
+  height: 36px;                          /* 按鈕高度 */
+  display: flex;                         /* flex 讓數字置中 */
+  align-items: center;                   /* 垂直置中 */
+  justify-content: center;              /* 水平置中 */
+  border-radius: 8px;                    /* 圓角 */
+  border: 1px solid var(--border);       /* 邊框 */
+  background: transparent;              /* 透明背景 */
+  color: var(--text-secondary);          /* 灰色文字 */
+  font-family: 'Noto Sans TC', sans-serif; /* 字體 */
+  font-size: 14px;                       /* 字體大小 */
+  cursor: pointer;                       /* 滑鼠變指針 */
+  transition: all 0.3s;                  /* 過渡動畫 */
+}
+.page-btn:hover {
+  border-color: rgba(229,9,20,0.4);      /* hover：紅色邊框 */
+  color: var(--text-primary);            /* hover：白色文字 */
+  background: rgba(229,9,20,0.08);       /* hover：淡紅色背景 */
+}
+.page-btn.active {
+  background: var(--accent);             /* 當前頁：紅色實心 */
+  border-color: var(--accent);           /* 當前頁：紅色邊框 */
+  color: #fff;                           /* 當前頁：白色文字 */
+  font-weight: 700;                      /* 當前頁：粗體 */
+}
+.page-btn.arrow {
+  font-size: 12px;                       /* 箭頭按鈕縮小 icon */
+  color: var(--text-muted);             /* 淡灰色 */
+}
+.page-btn.arrow:hover {
+  color: var(--accent);                  /* hover：紅色箭頭 */
+}
+.page-btn:disabled {
+  opacity: 0.3;                          /* disabled：半透明 */
+  cursor: not-allowed;                   /* disabled：禁止滑鼠 */
+}
+
+/* =====================================================
+   ▌為您推薦區塊（橫向滾動，6 部影片）
+   ===================================================== */
+.recommend-section {
+  padding: 40px var(--padding-x);        /* 上下 40px、左右套用變數 */
+  background: var(--bg-section);         /* 深棕色背景（與頁面頂部呼應） */
+  border-top: 1px solid var(--border);   /* 頂部分隔線 */
+}
+
+/* ── 推薦區塊標題列 ── */
+.recommend-header {
+  display: flex;                         /* 水平排列標題 + 箭頭 */
+  align-items: center;                   /* 垂直置中 */
+  justify-content: space-between;        /* 左右對齊 */
+  margin-bottom: 24px;                   /* 與卡片的間距 */
+}
+.recommend-title {
+  display: flex;                         /* 水平排列豎線 + 標題文字 */
+  align-items: center;                   /* 垂直置中 */
+  gap: 12px;                             /* 間距 */
+}
+.recommend-title-bar {
+  width: 4px;                            /* 紅色豎線寬度 */
+  height: 22px;                          /* 紅色豎線高度 */
+  background: var(--accent);             /* 紅色 */
+  border-radius: 2px;                    /* 小圓角 */
+}
+.recommend-title h2 {
+  font-size: 20px;                       /* 標題字體大小 */
+  font-weight: 900;                      /* 最粗字重 */
+  color: var(--text-primary);            /* 白色 */
+  letter-spacing: 1px;                   /* 輕微字距 */
+}
+
+/* ── 左右切換箭頭按鈕 ── */
+.recommend-arrows {
+  display: flex;                         /* 水平排列兩個箭頭 */
+  gap: 8px;                              /* 箭頭間距 */
+}
+.rec-arrow {
+  width: 34px;                           /* 按鈕寬度 */
+  height: 34px;                          /* 按鈕高度 */
+  display: flex;                         /* flex 讓 icon 置中 */
+  align-items: center;                   /* 垂直置中 */
+  justify-content: center;              /* 水平置中 */
+  border-radius: 8px;                    /* 圓角 */
+  border: 1px solid var(--border);       /* 邊框 */
+  background: transparent;              /* 透明背景 */
+  color: var(--text-muted);             /* 淡灰色 icon */
+  font-size: 13px;                       /* icon 大小 */
+  cursor: pointer;                       /* 滑鼠變指針 */
+  transition: all 0.3s;                  /* 過渡動畫 */
+}
+.rec-arrow:hover {
+  border-color: var(--accent);           /* hover：紅色邊框 */
+  color: var(--accent);                  /* hover：紅色 icon */
+  background: rgba(229,9,20,0.08);       /* hover：淡紅色背景 */
+}
+
+
 /* =====================================================
    RWD 響應式切版規則
    桌機：1440px / 平板：768px / 手機：360px
@@ -1735,7 +2224,6 @@ footer p { font-size: 12px; color: var(--text-muted); }
 
 /* ── 中型平板（1024px 以下）── */
 @media (max-width: 1024px) {
-
   /* 熱門精選：螢幕縮小後從 6 欄改為 4 欄排列 */
   .hot-grid { grid-template-columns: repeat(4, 1fr); }
   /* 電影介紹：左側海報欄寬從 300px 縮為 240px，間距也縮小 */
@@ -1746,6 +2234,8 @@ footer p { font-size: 12px; color: var(--text-muted); }
   .company-layout { gap: 40px; }
   /* 關於我們：公司圖片右下角浮動標籤往內縮，避免超出邊界 */
   .company-badge { right: -10px; bottom: -10px; }
+  /* 左欄縮為 190px */
+  .main-content {grid-template-columns: 190px 1fr; }
   /* 服務支援中心：從 4 欄縮為 2 欄排列 */
   .help-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1821,6 +2311,19 @@ footer p { font-size: 12px; color: var(--text-muted); }
   .form-row { grid-template-columns: 1fr; gap: 0; }
   /* 登入/註冊：單欄後每個欄位補回下方間距 */
   .form-row .form-group { margin-bottom: 12px; }
+  /* 主內容：兩欄改為單欄 */
+  .main-content { grid-template-columns: 1fr; }
+
+  /* 側欄：取消 sticky，改為普通流式排版 */
+  .sidebar { position: static; padding-right: 0; margin-bottom: 24px; }
+
+  /* 類別按鈕：垂直改為橫向排列 */
+  .category-list { flex-direction: row; flex-wrap: wrap; }
+  .cat-btn { width: auto; }              /* 寬度改為自適應 */
+
+  /* 電影網格：3欄改為2欄 */
+  .movies-grid { grid-template-columns: repeat(2, 1fr); }
+
   /* 頁尾：改為垂直排列並置中 */
   footer { flex-direction: column; align-items: center; text-align: center; }
   /* 頁尾連結：允許換行並置中對齊 */
@@ -1866,6 +2369,10 @@ footer p { font-size: 12px; color: var(--text-muted); }
   .auth-form-title { font-size: 20px; }
   /* 登入/註冊：Google 和 Facebook 按鈕從兩欄改為單欄 */
   .social-btns { grid-template-columns: 1fr; }
+
+   /* 維持2欄，間距縮小 */
+  .movies-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  
   /* 頁尾連結：手機版隱藏，節省空間 */
   .footer-links { display: none; }
 }
