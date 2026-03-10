@@ -197,9 +197,10 @@ nav a.active {
 
 
 /* =====================================================
-   英雄輪播區（Hero Carousel）
-   全螢幕高度，三張圖片自動輪播
-   ===================================================== */
+  movie animane tv home  css
+  ===================================================== */
+
+/* 英雄輪播區（Hero Carousel），全螢幕高度，三張圖片自動輪播 */
 .hero {
   margin-top: 70px; /* 避免被 fixed header 遮住 */
   position: relative;
@@ -828,6 +829,483 @@ footer p { font-size: 12px; color: var(--text-muted); }
   transition: color 0.3s;
 }
 .footer-links a:hover { color: var(--text-primary); }
+
+
+
+/* =====================================================
+   about home 區塊 css
+   ===================================================== */
+.about-hero {
+  margin-top: 70px;
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 底圖 */
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: brightness(0.32);
+}
+
+/* 多層漸層遮罩（上下收邊） */
+.about-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26,20,16,0.65) 0%,
+    rgba(26,20,16,0.05) 35%,
+    rgba(26,20,16,0.05) 65%,
+    rgba(26,20,16,0.90) 100%
+  );
+}
+
+/* 頂部紅色裝飾線 */
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  z-index: 2;
+}
+
+/* Hero 文字內容（置中） */
+.about-hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 0 var(--padding-x);
+}
+
+/* 頁面小徽章 */
+.about-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(229,9,20,0.15);
+  border: 1px solid rgba(229,9,20,0.4);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* 主標題「關於我們」 */
+.about-hero-title {
+  font-size: clamp(44px, 7vw, 82px);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: 6px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+  margin-bottom: 20px;
+}
+
+/* 底部紅色裝飾橫線 */
+.about-hero-line {
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 0 auto 18px;
+}
+
+/* Hero 副標文字 */
+.about-hero-sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   區塊二：團隊介紹（Team Section）
+   標題居中（CINEMAVERSE 團隊 + 副標）
+   成員卡片：4欄 × 2列 = 8 張
+   ===================================================== */
+.team-section {
+  padding: 80px var(--padding-x);
+  background: var(--bg-section);
+  position: relative;
+}
+
+/* 頂部裝飾細線 */
+.team-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+/* 團隊標題組（置中） */
+.team-header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+/* 小標籤（OUR TEAM） */
+.team-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.team-label::before,
+.team-label::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+/* 主標題（CINEMAVERSE 團隊） */
+.team-title {
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+/* Logo 名稱：紅色強調 */
+.team-title .logo-name { color: var(--accent); }
+
+/* 副標介紹文字 */
+.team-subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* 成員卡片網格：4欄 × 2列 */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* 單張成員卡片 */
+.member-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+/* hover：上移 + 紅色邊框光暈 */
+.member-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(229,9,20,0.5);
+  box-shadow: 0 16px 40px rgba(229,9,20,0.15), 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* 成員照片容器（3:4 直式比例） */
+.member-img-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  position: relative;
+}
+
+/* hover 時照片下方出現紅色漸層 */
+.member-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(229,9,20,0.18) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.member-card:hover .member-img-wrap::after { opacity: 1; }
+
+/* 成員照片 */
+.member-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.member-card:hover .member-img { transform: scale(1.05); }
+
+/* 成員文字資訊 */
+.member-info { padding: 16px 16px 18px; }
+
+/* 成員姓名 */
+.member-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+/* 成員職稱 */
+.member-role {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* 成員簡介（最多三行） */
+.member-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+/* 社群 icon 列 */
+.member-social { display: flex; gap: 8px; }
+.member-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.member-social a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+
+/* =====================================================
+   區塊三：公司介紹（Company Introduction）
+   左側公司圖片 + 右側文字介紹
+   ===================================================== */
+.company-section {
+  padding: 80px var(--padding-x);
+  background: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 裝飾：背景大字浮水印 */
+.company-section::after {
+  content: 'CINEMAVERSE';
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  font-size: 90px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.018);
+  letter-spacing: 6px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* 公司介紹主版型：左圖 + 右文 */
+.company-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* 左側圖片欄 */
+.company-img-col { position: relative; }
+
+/* 紅色裝飾邊框（偏移在圖片後方） */
+.company-img-col::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: -18px;
+  bottom: -18px;
+  border: 2px solid rgba(229,9,20,0.28);
+  border-radius: 14px;
+  z-index: 0;
+}
+
+/* 左側主圖 */
+.company-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* 浮動成就標籤（圖片右下角） */
+.company-badge {
+  position: absolute;
+  bottom: -18px;
+  right: -18px;
+  z-index: 3;
+  background: var(--accent);
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(229,9,20,0.45);
+}
+.company-badge .badge-num {
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+  display: block;
+}
+.company-badge .badge-text {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.9;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* 右側文字欄 */
+.company-text-col { position: relative; z-index: 1; }
+
+/* 小標籤 */
+.company-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* 公司標題 */
+.company-title {
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+.company-title .highlight { color: var(--accent); }
+
+/* 公司介紹段落 */
+.company-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+/* 公司數據統計列 */
+.company-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 32px 0;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 6px;
+  display: block;
+}
+.stat-num span { color: var(--accent); }
+.stat-label { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+
+/* 核心價值標籤 */
+.company-values { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.value-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(229,9,20,0.08);
+  border: 1px solid rgba(229,9,20,0.22);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: all 0.3s;
+}
+.value-tag:hover {
+  background: rgba(229,9,20,0.18);
+  color: var(--text-primary);
+}
+.value-tag i { color: var(--accent); font-size: 10px; }
+
+/* 探索更多按鈕 */
+.btn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: #fff;
+  padding: 13px 30px;
+  border-radius: 8px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-more:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(229,9,20,0.45);
+}
 
 
 /* =====================================================
