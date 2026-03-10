@@ -950,16 +950,16 @@ footer p { font-size: 12px; color: var(--text-muted); }
 }
 
 /* 頂部裝飾細線 */
-.team-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-}
+    .team-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
 
 /* 團隊標題組（置中） */
 .team-header {
@@ -1319,6 +1319,11 @@ footer p { font-size: 12px; color: var(--text-muted); }
   .hot-grid { grid-template-columns: repeat(4, 1fr); }
   /* 電影介紹左欄縮小 */
   .intro-layout { grid-template-columns: 240px 1fr; gap: 24px; }
+
+  .team-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .company-layout { gap: 40px; }
+  .company-badge { right: -10px; bottom: -10px; }
+
   /* 服務支援：4 欄 → 2 欄 */
   .help-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1366,6 +1371,17 @@ footer p { font-size: 12px; color: var(--text-muted); }
   .intro-layout { grid-template-columns: 1fr; }
   .intro-img { max-width: 260px; margin: 0 auto; }
 
+    .about-hero { height: 360px; }
+
+  /* 團隊：4欄 → 2欄 */
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* 公司：兩欄 → 單欄 */
+  .company-layout { grid-template-columns: 1fr; gap: 40px; }
+  .company-img-col::before { display: none; }
+  .company-badge { right: 16px; bottom: -14px; }
+  .company-section::after { font-size: 44px; }
+
   /* 頁尾垂直排列 */
   footer { flex-direction: column; align-items: center; text-align: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; }
@@ -1388,26 +1404,13 @@ footer p { font-size: 12px; color: var(--text-muted); }
 
   .slide-title { font-size: 22px; }
   .intro-title { font-size: 22px; }
+
+  .about-hero { height: 280px; }
+  .about-hero-title { font-size: 38px; letter-spacing: 3px; }
+  .team-section, .company-section { padding: 50px var(--padding-x); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .company-stats { gap: 12px; }
+  .stat-num { font-size: 22px; }
+
   .footer-links { display: none; }
-}
-
-/* ── 最小手機版（360px 以下）──
-   Logo 和按鈕同步縮小以容納空間
-   導覽選單透過漢堡展開，文字居中顯示 */
-@media (max-width: 360px) {
-  :root { --padding-x: 12px; }
-
-  /* Logo 縮小字體 */
-  .logo { font-size: 16px; letter-spacing: 1px; }
-
-  /* 登入/註冊按鈕縮小 */
-  .btn-login, .btn-register { font-size: 12px; padding: 6px 12px; }
-
-  /* 熱門精選 → 2 欄 */
-  .hot-grid { grid-template-columns: repeat(2, 1fr); }
-
-  /* 服務支援 → 單欄 */
-  .help-grid { grid-template-columns: 1fr; }
-
-  .slide-title { font-size: 18px; }
 }
