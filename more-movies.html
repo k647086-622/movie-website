@@ -23,8 +23,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- 引入 Font Awesome 6.4，提供 fa-heart / fa-ghost 等所有 icon -->
 
-  <link rel="stylesheet" href="movieWebsite.css">
+<!-- ===== css 選擇器 ===== -->
+<link rel="stylesheet" href="movieWebsite.css">
 
+<!-- ===== js 連結 ===== -->
+<script src="movieWebsite.js" defer></script>
+
+</head>
 
 <body>
 <!-- body 是頁面所有可見內容的容器 -->
@@ -48,20 +53,16 @@
   <!-- .header-inner：flex 容器，控制內部三個區塊的排列 -->
 
     <!-- Logo：點擊返回首頁 -->
-    <a class="logo" href="index.html">CINEMA<span>VERSE</span></a>
+    <a class="logo" href="movie-home.html">CINEMA<span>VERSE</span></a>
     <!-- .logo：CINEMA 紅色，VERSE 白色 -->
 
     <!-- 導覽選單 -->
     <nav id="mainNav">
     <!-- id="mainNav"：JavaScript toggleNav() 用來切換 open class -->
       <a href="movie-home.html">電影</a>
-      <!-- 首頁連結 -->
       <a href="animane-home.html">動漫</a>
-      <!-- 動漫連結（暫時 #） -->
       <a href="tv-home.html">電視劇</a>
-      <!-- 電視劇連結（暫時 #） -->
       <a href="about.html">關於我們</a>
-      <!-- 關於我們連結 -->
     </nav>
 
     <!-- 右側按鈕群組：登入/註冊 + 漢堡 -->
@@ -83,8 +84,8 @@
         <span></span><!-- 第二條線 -->
         <span></span><!-- 第三條線 -->
       </div>
-
     </div>
+
   </div><!-- end .header-inner -->
 </header><!-- end header -->
 
@@ -99,11 +100,11 @@
   <!-- 麵包屑：首頁 > 更多電影 -->
   <div class="breadcrumb">
   <!-- .breadcrumb：小字導覽路徑，讓使用者知道目前在哪一頁 -->
-    <a href="index.html">首頁</a>
+    <a href="movie-home.html">首頁</a>
     <!-- 可點擊連結，返回首頁 -->
     <i class="fas fa-chevron-right"></i>
     <!-- Font Awesome 右箭頭分隔符號 -->
-    <span>更多電影</span>
+    <span>更多影片</span>
     <!-- 目前頁面，純文字不可點擊 -->
   </div>
 
@@ -112,7 +113,7 @@
   <!-- h1：頁面唯一主標題，「電影」用 span 變紅 -->
 
   <!-- 副標題 -->
-  <p class="page-hero-sub">探索所有分類的精選電影，找到你的最愛</p>
+  <p class="page-hero-sub">探索所有分類的精選影片，找到你的最愛</p>
   <!-- .page-hero-sub：灰色小字說明 -->
 
 </div><!-- end .page-hero -->
@@ -134,7 +135,7 @@
   <!-- aside + .sidebar：語意標籤，表示輔助內容（類別選單） -->
 
     <!-- 側欄標題 -->
-    <div class="sidebar-title">電影類別</div>
+    <div class="sidebar-title">影片類別</div>
     <!-- .sidebar-title：大寫小字標籤，帶底部分隔線 -->
 
     <!-- 類別按鈕列表 -->
@@ -180,32 +181,6 @@
 
     </div><!-- end .category-list -->
 
-    <!-- 排序篩選區 -->
-    <div class="sidebar-filter">
-    <!-- .sidebar-filter：帶頂部分隔線的篩選選項區 -->
-      <div class="sidebar-filter-title">排序方式</div>
-      <!-- 篩選小標題 -->
-
-      <label class="filter-option">
-      <!-- label：點擊整列都可以選中 radio -->
-        <input type="radio" name="sort" value="rating" checked>
-        <!-- name="sort"：同名 radio 為一組，只能單選 -->
-        <!-- checked：預設選中 -->
-        評分最高
-      </label>
-
-      <label class="filter-option">
-        <input type="radio" name="sort" value="latest">
-        最新上映
-      </label>
-
-      <label class="filter-option">
-        <input type="radio" name="sort" value="duration">
-        片長排序
-      </label>
-
-    </div><!-- end .sidebar-filter -->
-
   </aside><!-- end .sidebar -->
 
 
@@ -225,7 +200,7 @@
         <!-- id="result-count"：JS 動態更新數字 -->
         &nbsp;·&nbsp;
         <!-- 中間點分隔符 -->
-        第 <span id="current-page-label">1</span> 頁／共 2 頁
+        第 <span id="current-page-label">1</span> 頁／共 4 頁
         <!-- id="current-page-label"：JS 動態更新頁碼 -->
       </div>
 
@@ -258,14 +233,6 @@
         <i class="fas fa-chevron-left"></i>
         <!-- 左箭頭 icon -->
       </button>
-
-      <button class="page-btn active" onclick="goToPage(1, this)">1</button>
-      <!-- 第 1 頁按鈕，預設 active（紅色） -->
-      <!-- onclick：呼叫 goToPage(1) 跳到第 1 頁 -->
-
-      <button class="page-btn" onclick="goToPage(2, this)">2</button>
-      <!-- 第 2 頁按鈕 -->
-
       <button class="page-btn arrow" id="next-btn" onclick="changePage(1)">
       <!-- id="next-btn"：最後一頁時 JS 設定 disabled -->
       <!-- onclick：呼叫 changePage(1) 往下一頁 -->
@@ -499,305 +466,187 @@
 
 </footer><!-- end footer -->
 
-
 </div><!-- end .page-wrapper -->
 
 
-<!-- =====================================================
-     ▌JavaScript
-       功能：類別切換、電影渲染、分頁、排序、橫向滾動
-   ===================================================== -->
 <script>
-
-/* =====================================================
-   ▌四個分類的電影資料
-     每個分類 12 部電影，圖片路徑對應你的本地資料夾
-   ===================================================== */
-const allMovies = {
-
-  /* ── 浪漫分類 12 部 ── */
-  '浪漫': [
-    { img: 'lovePic/lovePic12.png',  title: '愛的力量',       rating: 7.6, duration: '2h08m', tag: '浪漫' },
-    /* img：圖片路徑 | title：電影名稱 | rating：評分 | duration：時長 | tag：類型標籤 */
-    { img: 'lovePic/lovePic11.png',  title: '情牽一生',       rating: 8.3, duration: '1h37m', tag: '浪漫' },
-    { img: 'lovePic/lovePic10.png',  title: '夢中的婚禮',     rating: 9.1, duration: '1h19m', tag: '浪漫' },
-    { img: 'lovePic/lovePic9.png',   title: '愛，一直在',     rating: 6.5, duration: '1h31m', tag: '浪漫' },
-    { img: 'lovePic/lovePic8.png',   title: '守候一生的承諾', rating: 5.2, duration: '1h24m', tag: '浪漫' },
-    { img: 'lovePic/lovePic7.png',   title: '遇見你，真好',   rating: 6.4, duration: '2h22m', tag: '浪漫' },
-    { img: 'lovePic/lovePic6.png',   title: '愛在雨中蔓延',   rating: 8.2, duration: '1h23m', tag: '浪漫' },
-    { img: 'lovePic/lovePic5.png',   title: '琴聲繚繞',       rating: 7.7, duration: '1h45m', tag: '浪漫' },
-    { img: 'lovePic/lovePic4.png',   title: '擁抱星空',       rating: 9.4, duration: '1h13m', tag: '浪漫' },
-    { img: 'lovePic/lovePic3.png',   title: '最後一封情書',   rating: 6.2, duration: '2h03m', tag: '浪漫' },
-    { img: 'lovePic/lovePic2.png',   title: '時光之約',       rating: 8.3, duration: '1h37m', tag: '浪漫' },
-    { img: 'lovePic/lovePic1.png',   title: '霓虹深處的邂逅', rating: 7.6, duration: '2h08m', tag: '浪漫' }
-  ],
-
-  /* ── 恐怖分類 12 部 ── */
-  '恐怖': [
-    { img: 'horrorPic/horrorPic12.png', title: '亡靈歸來',   rating: 7.6, duration: '2h08m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic11.png', title: '寂靜殺機',   rating: 8.3, duration: '1h37m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic10.png', title: '活死人墓',   rating: 9.1, duration: '1h19m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic9.png',  title: '厲鬼現形',   rating: 6.5, duration: '1h31m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic8.png',  title: '惡魔交易',   rating: 5.2, duration: '1h24m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic7.png',  title: '深淵凝視',   rating: 6.4, duration: '2h22m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic6.png',  title: '亡靈嘉年華', rating: 8.2, duration: '1h23m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic5.png',  title: '血色森林',   rating: 7.7, duration: '1h45m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic4.png',  title: '咒怨凶宅',   rating: 9.4, duration: '1h13m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic3.png',  title: '厲鬼附身',   rating: 6.2, duration: '2h03m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic2.png',  title: '禁忌森林',   rating: 8.3, duration: '1h37m', tag: '恐怖' },
-    { img: 'horrorPic/horrorPic1.png',  title: '禁忌古宅',   rating: 7.6, duration: '2h08m', tag: '恐怖' }
-  ],
-
-  /* ── 懸疑分類 12 部 ── */
-  '懸疑': [
-    { img: 'susPic/susPic12.png', title: '最終的線索',   rating: 7.6, duration: '2h08m', tag: '懸疑' },
-    { img: 'susPic/susPic11.png', title: '謊言的遺產',   rating: 8.3, duration: '1h37m', tag: '懸疑' },
-    { img: 'susPic/susPic10.png', title: '獵殺潛伏',     rating: 9.1, duration: '1h19m', tag: '懸疑' },
-    { img: 'susPic/susPic9.png',  title: '影子城市',     rating: 6.5, duration: '1h31m', tag: '懸疑' },
-    { img: 'susPic/susPic8.png',  title: '深淵的訊號',   rating: 5.2, duration: '1h24m', tag: '懸疑' },
-    { img: 'susPic/susPic7.png',  title: '記憶裂痕',     rating: 6.4, duration: '2h22m', tag: '懸疑' },
-    { img: 'susPic/susPic6.png',  title: '密室遺言',     rating: 8.2, duration: '1h23m', tag: '懸疑' },
-    { img: 'susPic/susPic5.png',  title: '時光編碼',     rating: 7.7, duration: '1h45m', tag: '懸疑' },
-    { img: 'susPic/susPic4.png',  title: '謊言的碎片',   rating: 9.4, duration: '1h13m', tag: '懸疑' },
-    { img: 'susPic/susPic3.png',  title: '最後的晚餐',   rating: 6.2, duration: '2h03m', tag: '懸疑' },
-    { img: 'susPic/susPic2.png',  title: '消失的證人',   rating: 8.3, duration: '1h37m', tag: '懸疑' },
-    { img: 'susPic/susPic1.png',  title: '消失的真相',   rating: 7.6, duration: '2h08m', tag: '懸疑' }
-  ],
-
-  /* ── 喜劇分類 12 部 ── */
-  '喜劇': [
-    { img: 'funPic/funPic12.png', title: '金牌大廚',         rating: 7.6, duration: '2h08m', tag: '喜劇' },
-    { img: 'funPic/funPic11.png', title: '狗狗特工',         rating: 8.3, duration: '1h37m', tag: '喜劇' },
-    { img: 'funPic/funPic10.png', title: '求愛特攻隊',       rating: 9.1, duration: '1h19m', tag: '喜劇' },
-    { img: 'funPic/funPic9.png',  title: '老闆不在家',       rating: 6.5, duration: '1h31m', tag: '喜劇' },
-    { img: 'funPic/funPic8.png',  title: '我的機器人女友',   rating: 5.2, duration: '1h24m', tag: '喜劇' },
-    { img: 'funPic/funPic7.png',  title: '瘋狂大拍賣',       rating: 6.4, duration: '2h22m', tag: '喜劇' },
-    { img: 'funPic/funPic6.png',  title: '重返十七歲',       rating: 8.2, duration: '1h23m', tag: '喜劇' },
-    { img: 'funPic/funPic5.png',  title: '荒島大逃殺',       rating: 7.7, duration: '1h45m', tag: '喜劇' },
-    { img: 'funPic/funPic4.png',  title: '我的室友是外星人', rating: 9.4, duration: '1h13m', tag: '喜劇' },
-    { img: 'funPic/funPic3.png',  title: '烏龍特警',         rating: 6.2, duration: '2h03m', tag: '喜劇' },
-    { img: 'funPic/funPic2.png',  title: '笑翻天',           rating: 8.3, duration: '1h37m', tag: '喜劇' },
-    { img: 'funPic/funPic1.png',  title: '歡樂無限',         rating: 7.6, duration: '2h08m', tag: '喜劇' }
-  ]
-};
-
-/* ── 狀態變數（記錄目前狀態，切換時使用） ── */
-let currentCategory = '浪漫';  /* 目前選中的類別名稱，初始為浪漫 */
-let currentPage     = 1;       /* 目前頁碼，初始為第 1 頁 */
-const ITEMS_PER_PAGE = 9;      /* 每頁顯示 9 部電影（3×3 網格） */
-const TOTAL_PAGES    = 2;      /* 總頁數固定為 2（12 部 ÷ 9 = 2 頁） */
-
 
 /* =====================================================
    ▌renderGrid
      依照目前分類 + 頁碼，渲染對應的 9 張電影卡片
    ===================================================== */
+let currentCategory = '浪漫';  /* 目前選中的分類 */
+let currentPage     = 1;       /* 目前頁碼 */
+const ITEMS_PER_PAGE = 9;      /* 每頁顯示 9 部 */
+
+/* ════════════════════════════════
+   ▌getData()
+   把三個來源的同一分類合併成一個陣列
+   ════════════════════════════════ */
+function getData() {
+  return [
+    ...movieMorePage[currentCategory],   /* 電影該分類 12 部 */
+    ...animaneMorePage[currentCategory], /* 動漫該分類 12 部 */
+    ...tvMorePage[currentCategory]       /* 電視劇該分類 12 部 */
+  ];
+  /* 合併後每個分類共 36 部 */
+}
+
+/* ════════════════════════════════
+   ▌getTotalPages()
+   動態計算總頁數（36 ÷ 9 = 4 頁）
+   ════════════════════════════════ */
+function getTotalPages() {
+  return Math.ceil(getData().length / ITEMS_PER_PAGE);
+}
+
+/* ════════════════════════════════
+   ▌renderGrid()
+   渲染目前頁的電影卡片
+   ════════════════════════════════ */
 function renderGrid() {
-
   const grid   = document.getElementById('movies-grid');
-  /* 取得卡片網格容器，innerHTML 會插入這裡 */
-
-  const movies = allMovies[currentCategory];
-  /* 用 currentCategory 當 key，取出對應分類的電影陣列 */
-
+  const movies = getData(); /* 取得合併後的 36 部 */
   if (!grid || !movies) return;
-  /* 防呆：如果找不到容器或資料，直接結束 */
 
-  /* ── 計算目前頁的切片範圍 ── */
-  const start = (currentPage - 1) * ITEMS_PER_PAGE;
-  /* 第 1 頁：start = 0，第 2 頁：start = 9 */
+  /* 計算目前頁的切片 */
+  const start = (currentPage - 1) * ITEMS_PER_PAGE; /* 第1頁:0, 第2頁:9, 第3頁:18... */
+  const end   = Math.min(start + ITEMS_PER_PAGE, movies.length);
+  const slice = movies.slice(start, end); /* 取出目前頁的 9 部 */
 
-  const end = Math.min(start + ITEMS_PER_PAGE, movies.length);
-  /* 結尾不超過陣列長度（第 2 頁最多到 12） */
-
-  const slice = movies.slice(start, end);
-  /* 截取目前頁的電影陣列（第 1 頁：index 0-8，第 2 頁：index 9-11） */
-
-  /* ── 用 map 產生所有卡片的 HTML 字串 ── */
   const html = slice.map(movie => `
     <div class="movie-card">
-    <!-- 單張電影卡片，hover 時上浮 + 紅色邊框 -->
-
       <div class="movie-card-img-wrap">
-      <!-- 圖片容器：aspect-ratio 2/3，overflow:hidden -->
-
-        <div class="movie-card-play">
-        <!-- hover 時顯示的播放按鈕，opacity 0→1 -->
-          <i class="fas fa-play"></i>
-          <!-- Font Awesome 播放三角形 icon -->
-        </div>
-
+        <div class="movie-card-play"><i class="fas fa-play"></i></div>
         <img class="movie-card-img" src="${movie.img}" alt="${movie.title}">
-        <!-- 動態插入圖片路徑和 alt 文字 -->
-
-      </div><!-- end .movie-card-img-wrap -->
-
+      </div>
       <div class="movie-card-info">
-      <!-- 文字資訊區：padding 14px -->
-
         <div class="movie-card-title">${movie.title}</div>
-        <!-- 電影標題，超出顯示 ... -->
-
         <div class="movie-card-meta">
-        <!-- 評分 + 時長一行 -->
           <i class="fas fa-star star"></i>${movie.rating}&nbsp;
-          <!-- fa-star 金色星星 + 評分數字 -->
           <i class="fas fa-clock"></i>${movie.duration}
-          <!-- fa-clock 時鐘 icon + 時長 -->
         </div>
-
-        <span class="movie-card-tag">${movie.tag}</span>
-        <!-- 類型標籤：紅色膠囊樣式 -->
-
-      </div><!-- end .movie-card-info -->
-
-    </div><!-- end .movie-card -->
+      </div>
+    </div>
   `).join('');
-  /* .join('') 把陣列合併成一個連續的 HTML 字串 */
 
-  /* ── 淡出 → 替換內容 → 淡入 ── */
-  grid.style.opacity = '0';
-  /* 先讓網格淡出（透明） */
-
+  /* 淡出 → 替換 → 淡入 */
+  grid.style.opacity    = '0';
   grid.style.transition = 'opacity 0.25s ease';
-  /* 設定 0.25 秒的透明度過渡動畫 */
-
   setTimeout(() => {
-  /* 等待 250ms（淡出完成後）再替換內容 */
-    grid.innerHTML = html;
-    /* 把新的卡片 HTML 插入網格容器 */
+    grid.innerHTML     = html;
     grid.style.opacity = '1';
-    /* 淡入：透明度回到 1 */
   }, 250);
 
-  /* ── 更新工具列數字 ── */
-  document.getElementById('result-count').textContent = movies.length;
-  /* 更新「共 X 部電影」的數字 */
-
+  /* 更新工具列數字 */
+  document.getElementById('result-count').textContent       = movies.length;
   document.getElementById('current-page-label').textContent = currentPage;
-  /* 更新「第 X 頁」的數字 */
 
-  updatePagination();
-  /* 呼叫分頁按鈕更新 function */
+  updatePagination(); /* 更新分頁按鈕 */
 }
 
-
-/* =====================================================
-   ▌updatePagination
-     更新分頁按鈕的 active 狀態和 disabled 狀態
-   ===================================================== */
+/* ════════════════════════════════
+   ▌updatePagination()
+   動態產生分頁按鈕（總頁數不固定）
+   ════════════════════════════════ */
 function updatePagination() {
+  const total     = getTotalPages(); /* 動態計算，目前是 4 頁 */
+  const container = document.getElementById('pagination');
 
-  /* 更新數字按鈕的 active class */
-  document.querySelectorAll('#pagination .page-btn:not(.arrow)').forEach((btn, i) => {
-  /* 選取分頁容器內所有非箭頭的按鈕，i 從 0 開始 */
-    btn.classList.toggle('active', i + 1 === currentPage);
-    /* 若 i+1 等於目前頁碼，加上 active；否則移除 */
+  let html = `
+    <button class="page-btn arrow" id="prev-btn"
+      onclick="changePage(-1)" ${currentPage === 1 ? 'disabled' : ''}>
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  `;
+
+  /* 動態產生每一頁的按鈕 */
+  for (let i = 1; i <= total; i++) {
+    html += `
+      <button class="page-btn ${i === currentPage ? 'active' : ''}"
+        onclick="goToPage(${i})">${i}
+      </button>
+    `;
+  }
+
+  html += `
+    <button class="page-btn arrow" id="next-btn"
+      onclick="changePage(1)" ${currentPage === total ? 'disabled' : ''}>
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  `;
+
+  container.innerHTML = html;
+}
+
+/* ════════════════════════════════
+   ▌switchCategory()
+   點擊左側分類按鈕時觸發
+   ════════════════════════════════ */
+function switchCategory(category, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  currentCategory = category; /* 更新分類 */
+  currentPage     = 1;        /* 重置回第 1 頁 */
+  renderGrid();
+}
+
+/* ════════════════════════════════
+   ▌changePage() / goToPage()
+   分頁切換
+   ════════════════════════════════ */
+function changePage(dir) {
+  const newPage = currentPage + dir;
+  if (newPage < 1 || newPage > getTotalPages()) return;
+  currentPage = newPage;
+  renderGrid();
+  document.querySelector('.movies-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function goToPage(page) {
+  currentPage = page;
+  renderGrid();
+  document.querySelector('.movies-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ════════════════════════════════
+   ▌handleSort()
+   排序下拉選單變更時觸發
+   ════════════════════════════════ */
+function handleSort() {
+  const val = document.getElementById('sort-select').value;
+
+  /* 三個來源各自排序，排序後 getData() 合併時就已經是排序好的 */
+  ['浪漫','恐怖','懸疑','喜劇'].forEach(cat => {
+    const sorter = (a, b) => val === 'rating-desc'
+      ? b.rating - a.rating   /* 評分高→低 */
+      : val === 'rating-asc'
+      ? a.rating - b.rating   /* 評分低→高 */
+      : 0;                    /* 預設不排序 */
+
+    movieMorePage[cat].sort(sorter);
+    animaneMorePage[cat].sort(sorter);
+    tvMorePage[cat].sort(sorter);
   });
 
-  document.getElementById('prev-btn').disabled = (currentPage === 1);
-  /* 第 1 頁時，上一頁按鈕設為 disabled */
-
-  document.getElementById('next-btn').disabled = (currentPage === TOTAL_PAGES);
-  /* 最後一頁時，下一頁按鈕設為 disabled */
-}
-
-
-/* =====================================================
-   ▌switchCategory
-     點擊左側類別按鈕時呼叫
-     切換分類 → 重置第 1 頁 → 重新渲染
-   ===================================================== */
-function switchCategory(category, btn) {
-
-  /* 移除所有類別按鈕的 active class */
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  /* 先把所有按鈕的 active 清除 */
-
-  if (btn) btn.classList.add('active');
-  /* 把被點擊的按鈕加上 active */
-
-  currentCategory = category;
-  /* 更新目前分類狀態變數 */
-
   currentPage = 1;
-  /* 切換分類後重置回第 1 頁 */
-
   renderGrid();
-  /* 重新渲染卡片 */
 }
 
-
-/* =====================================================
-   ▌changePage
-     點擊上一頁 / 下一頁箭頭按鈕時呼叫
-     dir：-1（上一頁）或 1（下一頁）
-   ===================================================== */
-function changePage(dir) {
-
-  const newPage = currentPage + dir;
-  /* 計算新頁碼 */
-
-  if (newPage < 1 || newPage > TOTAL_PAGES) return;
-  /* 防呆：超出範圍直接返回 */
-
-  currentPage = newPage;
-  /* 更新頁碼狀態 */
-
-  renderGrid();
-  /* 重新渲染 */
-
-  document.querySelector('.movies-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  /* 平滑捲動到電影網格頂部，讓使用者看到新內容 */
+/* ════════════════════════════════
+   ▌toggleNav() — 漢堡選單
+   ════════════════════════════════ */
+function toggleNav() {
+  document.getElementById('mainNav').classList.toggle('open');
 }
 
-
-/* =====================================================
-   ▌goToPage
-     點擊數字頁碼按鈕時呼叫
-   ===================================================== */
-function goToPage(page, btn) {
-
-  currentPage = page;
-  /* 直接設定頁碼 */
-
+/* ════════════════════════════════
+   ▌DOMContentLoaded — 初始化
+   預設顯示「浪漫」分類第 1 頁
+   ════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
   renderGrid();
-  /* 重新渲染 */
-
-  document.querySelector('.movies-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  /* 平滑捲動到頂部 */
-}
-
-
-/* =====================================================
-   ▌handleSort
-     排序下拉選單改變時呼叫
-     依評分重新排序目前分類的電影陣列
-   ===================================================== */
-function handleSort() {
-
-  const val = document.getElementById('sort-select').value;
-  /* 取得目前選中的排序方式 */
-
-  const movies = allMovies[currentCategory];
-  /* 取出目前分類的電影陣列（直接修改原始陣列） */
-
-  if (val === 'rating-desc') {
-    movies.sort((a, b) => b.rating - a.rating);
-    /* 評分高到低：b - a */
-  } else if (val === 'rating-asc') {
-    movies.sort((a, b) => a.rating - b.rating);
-    /* 評分低到高：a - b */
-  }
-  /* 預設排序不做任何處理 */
-
-  currentPage = 1;
-  /* 排序後重置回第 1 頁 */
-
-  renderGrid();
-  /* 重新渲染 */
-}
-
+});
 
 /* =====================================================
    ▌scrollRec
@@ -812,28 +661,6 @@ function scrollRec(dir) {
   if (wrap) wrap.scrollBy({ left: dir * 360, behavior: 'smooth' });
   /* 每次滾動 360px（約 2 張卡片），平滑動畫 */
 }
-
-
-/* =====================================================
-   ▌toggleNav
-     點擊漢堡按鈕時呼叫
-     切換導覽選單的 open class（顯示/隱藏）
-   ===================================================== */
-function toggleNav() {
-  document.getElementById('mainNav').classList.toggle('open');
-  /* toggle：有 open 就移除，沒有就加上 */
-}
-
-
-/* =====================================================
-   ▌DOMContentLoaded
-     頁面 DOM 載入完成後執行初始化
-     預設顯示「浪漫」分類第 1 頁
-   ===================================================== */
-document.addEventListener('DOMContentLoaded', () => {
-  renderGrid();
-  /* 頁面載入時立即渲染預設分類（浪漫）的第 1 頁卡片 */
-});
 
 </script>
 
