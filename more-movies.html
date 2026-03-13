@@ -285,92 +285,7 @@
 
     <div class="scroll-track-wrapper">
 
-      <div class="scroll-track">
-
-        <!-- 推薦卡片 01 -->
-        <div class="latest-card">
-          <div class="latest-card-img-wrap">
-            <img class="latest-card-img" src="lovePic/lovePic1.png" alt="霓虹深處的邂逅">
-          </div>
-          <div class="latest-card-info">
-            <div class="latest-card-title">霓虹深處的邂逅</div>
-            <div class="latest-card-meta">
-              <i class="fas fa-star star"></i>7.6&nbsp;
-              <i class="fas fa-clock"></i>2h08m
-            </div>
-          </div>
-        </div><!-- end 推薦卡片 01 -->
-  
-        <!-- 推薦卡片 02 -->
-        <div class="latest-card">
-          <div class="latest-card-img-wrap">
-            <img class="latest-card-img" src="horrorPic/horrorPic1.png" alt="禁忌古宅">
-          </div>
-          <div class="latest-card-info">
-            <div class="latest-card-title">禁忌古宅</div>
-            <div class="latest-card-meta">
-              <i class="fas fa-star star"></i>8.3&nbsp;
-              <i class="fas fa-clock"></i>1h55m
-            </div>
-          </div>
-        </div><!-- end 推薦卡片 02 -->
-  
-        <!-- 推薦卡片 03 -->
-        <div class="latest-card">
-          <div class="latest-card-img-wrap">
-            <img class="latest-card-img" src="susPic/susPic1.png" alt="消失的真相">
-          </div>
-          <div class="latest-card-info">
-            <div class="latest-card-title">消失的真相</div>
-            <div class="latest-card-meta">
-              <i class="fas fa-star star"></i>9.1&nbsp;
-              <i class="fas fa-clock"></i>2h15m
-            </div>
-          </div>
-        </div><!-- end 推薦卡片 03 -->
-  
-        <!-- 推薦卡片 04 -->
-        <div class="latest-card">
-          <div class="latest-card-img-wrap">
-            <img class="latest-card-img" src="funPic/funPic1.png" alt="歡樂無限">
-          </div>
-          <div class="latest-card-info">
-            <div class="latest-card-title">歡樂無限</div>
-            <div class="latest-card-meta">
-              <i class="fas fa-star star"></i>7.8&nbsp;
-              <i class="fas fa-clock"></i>1h42m
-            </div>
-          </div>
-        </div><!-- end 推薦卡片 04 -->
-  
-        <!-- 推薦卡片 05 -->
-        <div class="latest-card">
-          <div class="latest-card-img-wrap">
-            <img class="latest-card-img" src="lovePic/lovePic5.png" alt="琴聲繚繞">
-          </div>
-          <div class="latest-card-info">
-            <div class="latest-card-title">琴聲繚繞</div>
-            <div class="latest-card-meta">
-              <i class="fas fa-star star"></i>8.5&nbsp;
-              <i class="fas fa-clock"></i>1h45m
-            </div>
-          </div>
-        </div><!-- end 推薦卡片 05 -->
-  
-        <!-- 推薦卡片 06 -->
-        <div class="latest-card">
-          <div class="latest-card-img-wrap">
-            <img class="latest-card-img" src="susPic/susPic6.png" alt="密室遺言">
-          </div>
-          <div class="latest-card-info">
-            <div class="latest-card-title">密室遺言</div>
-            <div class="latest-card-meta">
-              <i class="fas fa-star star"></i>8.2&nbsp;
-              <i class="fas fa-clock"></i>1h23m
-            </div>
-          </div>
-        </div><!-- end 推薦卡片 06 -->
-
+      <div class="scroll-track" id="recom-grid">
       </div><!-- end .scroll-track -->
 
     </div><!-- end .recommend-track -->
@@ -633,21 +548,6 @@ function handleSort() {
   renderGrid();
 }
 
-/* ════════════════════════════════
-   ▌toggleNav() — 漢堡選單
-   ════════════════════════════════ */
-function toggleNav() {
-  document.getElementById('mainNav').classList.toggle('open');
-}
-
-/* ════════════════════════════════
-   ▌DOMContentLoaded — 初始化
-   預設顯示「浪漫」分類第 1 頁
-   ════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-  renderGrid();
-});
-
 /* =====================================================
    ▌scrollRec
      點擊推薦區左右箭頭時呼叫
@@ -662,6 +562,38 @@ function scrollRec(dir) {
   /* 每次滾動 360px（約 2 張卡片），平滑動畫 */
 }
 
+function renderRecommendGrid(movies){
+  const grid = document.getElementById('recom-grid');
+  if(!grid || !movies) return;
+
+  const html = movies.map(movie => `
+    <div class="latest-card">
+        <div class="latest-card-img-wrap">
+          <a href="${movie.link}">
+            <img class="latest-card-img" src="${movie.img}" alt="${movie.title}">
+          </a>
+        </div>
+        <div class="latest-card-info">
+          <div class="latest-card-title">${movie.title}</div>
+          <div class="latest-card-meta">
+            <i class="fas fa-star star"></i>${movie.rating}&nbsp;
+            <i class="fas fa-clock"></i>${movie.duration}
+          </div>
+        </div>
+      </div>
+  `).join('');
+
+  grid.innerHTML = html;
+  }
+
+  /* ════════════════════════════════
+   ▌DOMContentLoaded — 初始化
+   預設顯示「浪漫」分類第 1 頁
+   ════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  renderGrid();
+  renderRecommendGrid(movieRec);
+});
 </script>
 
 </body>

@@ -783,3 +783,21 @@
         {img: "tvPics/funPic/funPic12.png", title: "誰把我的人生調成困難模式", rating: "6.5", duration: "2h10m"}
       ]
     }
+
+                        /*============================================================
+                                            推薦影片 種類資料 (更多) 
+                          ============================================================*/
+      const movieRec = [
+        {img: "tvPics/lovePic/lovePic1.png", title: "如果那天我們沒有錯過", rating: "8.8", duration: "1h45m"},
+        {img: "animanePics/horrorPic/horrorPic1.png", title: "深夜自習室第九排", rating: "6.2", duration: "1h58m"},
+        {img: "moviePics/susPic/susPic3.png", title: "最後的晚餐", rating: "9.5", duration: "1h29m"},
+        {img: "tvPics/funPic/funPic4.png", title: "我真的不是天才", rating: "9.7", duration: "1h12m"},
+        {img: "animanePics/horrorPic/horrorPic8.png", title: "停格的監視畫面", rating: "6.9", duration: "1h27m"},
+        {img: "moviePics/funPic/funPic10.png", title: "求愛特攻隊", rating: "5.4", duration: "1h52m"},
+        {img: "tvPics/horrorPic/horrorPic7.png", title: "窗外一直有人看著", rating: "6.8", duration: "1h33m"},
+        {img: "animanePics/lovePic/lovePic11.png", title: "你的名字還沒出現", rating: "8.7", duration: "2h11m"},
+        {img: "moviePics/funPic/funPic7.png", title: "瘋狂大拍賣", rating: "7.5", duration: "1h27m"},
+        {img: "tvPics/susPic/susPic4.png", title: "倒數48小時", rating: "6.1", duration: "1h59m"},
+        {img: "animanePics/lovePic/lovePic9.png", title: "那年夏天沒有結束", rating: "9.1", duration: "1h58m"},
+        {img: "moviePics/susPic/susPic2.png", title: "看不見的嫌疑犯", rating: "8.6", duration: "1h51m"},
+      ];
